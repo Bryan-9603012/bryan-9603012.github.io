@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PicoPage from "./PicoPage";
+import PicoPage from "./picoPage";
 
 const PicoCTFModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;

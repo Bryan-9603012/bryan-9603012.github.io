@@ -4,7 +4,7 @@ const problems =
 [
   {
     id: "register-game",
-    title: "Getting Started / 註冊遊戲指引",
+    title: "FANTASY CTF",
     difficulty: "easy",
     steps: [
       "在終端機輸入：nc verbal-sleep.picoctf.net 50621 進行連線。(每個人專屬連線資訊請參考 picoCTF 網站上的提示)",
@@ -13,6 +13,20 @@ const problems =
       "之後照提示一路往下讀，只要一直按 Enter，最後就會看到 flag。",
     ],
     note: "這題主要是熟悉 nc 連線與遵守比賽規則（單一帳號、不可共用），技術難度不高，但很重要",
+  },
+  {
+    id:"log-hunt",
+    title:"Log Hunt",
+    difficulty:"easy",
+    steps:
+    [
+      "步驟一:下載好題目要的檔案後切換到你存放檔案的目錄，且在終端機輸入ls -a查看有沒有隱藏的檔案",
+      "步驟二:使用cat <檔名>查看檔案的內容",
+            "沒意外的話你會看到一大堆的log檔案",
+      "步驟三使用grep尋找flag(grep 的主要功能與用途在檔案中搜尋特定文字)",
+      "那我們要的特定文字是FLAG所以我們輸入grep FLAG <檔名>",
+      "步驟四:拼出flag就好了","flag的格式為picoCTF{...}"
+    ],
   },
 ];
 

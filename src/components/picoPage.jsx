@@ -27,6 +27,7 @@ const problems =
       "那我們要的特定文字是FLAG所以我們輸入grep FLAG <檔名>",
       "步驟四:拼出flag就好了","flag的格式為picoCTF{...}"
     ],
+    note:"關鍵字選picoCTF的話只會出現picoCTF而已不會出現完整flag所以要選FLAG",
   },
 ];
 

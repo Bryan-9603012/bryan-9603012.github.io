@@ -7,12 +7,12 @@ const problems =
     title: "Getting Started / 註冊遊戲指引",
     difficulty: "easy",
     steps: [
-      "在終端機輸入：nc verbal-sleep.picoctf.net 50621 進行連線。",
+      "在終端機輸入：nc verbal-sleep.picoctf.net 50621 進行連線。(每個人專屬連線資訊請參考 picoCTF 網站上的提示)",
       "出現 Nyx brings up the registration page. 選項 A/B/C 時，輸入 c（Register a single, private account）。",
       "接著出現 Options: A) Play the game / B) Search the Ether for the flag 時，輸入 a 開始遊戲（注意 b 會讓你卡在無限循環）。",
       "之後照提示一路往下讀，只要一直按 Enter，最後就會看到 flag。",
     ],
-    note: "這題主要是熟悉 nc 連線與遵守比賽規則（單一帳號、不可共用），技術難度不高，但很重要。",
+    note: "這題主要是熟悉 nc 連線與遵守比賽規則（單一帳號、不可共用），技術難度不高，但很重要",
   },
 ];
 

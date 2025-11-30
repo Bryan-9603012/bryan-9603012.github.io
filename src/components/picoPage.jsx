@@ -5,7 +5,6 @@ const problems =
   {
     id: "register-game",
     title: "FANTASY CTF",
-    difficulty: "easy",
     steps: [
       "在終端機輸入：nc verbal-sleep.picoctf.net 50621 進行連線。(每個人專屬連線資訊請參考 picoCTF 網站上的提示)",
       "出現 Nyx brings up the registration page. 選項 A/B/C 時，輸入 c（Register a single, private account）。",
@@ -17,7 +16,6 @@ const problems =
   {
     id:"log-hunt",
     title:"Log Hunt",
-    difficulty:"easy",
     steps:
     [
       "步驟一:下載好題目要的檔案後切換到你存放檔案的目錄，且在終端機輸入ls -a查看有沒有隱藏的檔案",

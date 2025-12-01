@@ -29,8 +29,30 @@ const problems =
     ],
     note:"關鍵字選picoCTF的話只會出現picoCTF而已不會出現完整flag所以要選FLAG",
   },
+  {
+    id:"pie-time",
+    title:"Pie Time",
+    difficulty:"easy",
+    steps:
+    [
+      "挑戰概述",
+      "這題目標是透過 buffer overflow 找到 win 函式的正確地址，讓程式呼叫 win 函式顯示 flag。",
+      "提供的 vuln 二進位檔有 main 和 win 兩個函式，透過 offset 計算實現 ret2win。",
+      "步驟一：靜態分析",
+      "在終端機裡輸入:objdump -d vuln | grep '<main>",
+      "11c1:  48 8d 3d 75 01 00 00  lea  0x175(%rip),%rdi  # 133d <main>",
+      "main offset: 0x133d",
+      "再來輸入:objdump -d vuln | grep <win>",
+      "這樣就可以直接取得 win offset。",
+      "步驟二:Win 地址計算",
+      "使用公式：win_address = main_address - (main_offset - win_offset)。",
+      "步驟三:nc 連線",
+      "在終端機裡輸入計算出來的 win 地址",
+      "這樣就可以得到flag了",
+    ],
+    note:   "如果出現了Segfault Occurred, incorrect address.那有可能是你算錯了\n如果沒算錯那就是格式打錯了address的格式必須用hex也就是0x.........."
+  },
 ];
-
 const difficultyLabels = {
   easy: "簡單",
   normal: "一般",
@@ -58,7 +80,7 @@ export default function PicoPage() {
   };
 
   const handleBackToDifficulty = () => {
-    setView("difficulty");
+    setView("difficulty");yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
     setCurrentDifficulty(null);
     setCurrentProblemId(null);
   };

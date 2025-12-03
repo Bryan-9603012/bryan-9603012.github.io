@@ -63,6 +63,48 @@ const problems = [
     ],
   },
   {
+      id: "what's a net cat?",
+      title: "What's a Net Cat?",
+      difficulty: "easy",
+      steps: [
+        "挑戰概述:",
+        "這題目標是使用 netcat (nc) 工具連接到指定的伺服器和埠號，並從中獲取 flag。",
+        "步驟一:打開終端機",
+        "步驟二:使用 nc 命令連接到伺服器",
+        "在終端機中輸入以下命令: nc <伺服器位子> <埠號>",
+        "沒有意外的話你會看到一些數字，這些數字其實是 ASCII 編碼",
+        "步驟三:將 ASCII 編碼轉換為文字，獲取 flag",
+      ],
+  },
+  {
+      id:"nice netcat...",
+      title: "Nice Netcat...",
+      difficulty: "easy",
+      steps: [
+        "挑戰概述:",
+        "這題目標是使用 netcat (nc) 工具連接到指定的伺服器和埠號，並從中獲取 flag。",
+        "步驟一:打開終端機",
+        "步驟二:使用 nc 命令連接到伺服器",
+        "在終端機中輸入以下命令: nc <伺服器位子> <埠號>",
+        "例如: nc 2019shell1.picoctf.com 54321",
+        "步驟三:接收 flag",
+      ],
+  },
+  {
+      id:"rotation",
+      title: "Rotation",
+      difficulty: "normal",
+      steps: 
+      [
+        "挑戰概述:",
+        "這題目標是解碼一個經過旋轉加密的字串以獲取 flag。",
+        "步驟一:下載檔案後切到存放檔案的目錄",
+        "步驟二:使用cat查看檔案內容",
+        "步驟三:使用ROT13解碼工具解碼字串，然後就可以得到flag了",
+      ],
+  note:"picoCTF的flag一定是pico{.....}的格式"
+  },
+  {
     id: "pie-time",
     title: "Pie Time",
     difficulty: "easy",

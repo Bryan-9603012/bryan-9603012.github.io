@@ -105,6 +105,25 @@ const problems = [
   note:"picoCTF的flag一定是pico{.....}的格式"
   },
   {
+    id:"sansalpha",
+    title: "SansAlpha",
+    difficulty: "normal",
+    steps: 
+    [
+      "挑戰概述:",
+      "利用 bash globbing 繞過字母禁令以獲取 flag。",
+      "在終端機裡輸入*，展開當前目錄所有檔案/目錄",
+      "輸入*/*，展開當前目錄下所有子目錄的檔案/目錄，就可以發現flag.txt",
+      "輸入/*，匹配根目錄所有項目",
+      "輸入/*/???匹配/bin/下3字元命令",
+      "輸入/*/??????匹配6字元，找到base64",
+      "輸入 /*/????64 */*，精確的匹配到base64",
+      "輸入/*/???[!_]64 */*，匹配到/bin/base64",
+      "輸入/*/???[!_]64 */????.*，得到flag.txt的base64編碼，解碼後就是flag了",
+
+    ],
+  },
+  {
     id: "pie-time",
     title: "Pie Time",
     difficulty: "easy",

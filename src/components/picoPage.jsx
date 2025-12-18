@@ -105,6 +105,30 @@ const problems = [
   note:"picoCTF的flag一定是pico{.....}的格式"
   },
   {
+    id:"interencdec",
+    title: "InterEncDec",
+    difficulty: "easy",
+    steps: 
+    [
+      "挑戰概述:",
+      "這題目標是解讀一個經過多層編碼的字串以獲取 flag。",
+      "步驟一:下載檔案後切到存放檔案的目錄",
+      "步驟二:使用cat查看檔案內容，你會看到一串base64的編碼，然後使用base64解碼工具解碼",
+      "步驟三:解碼後你會得到另一串base64的編碼，繼續使用base64解碼工具解碼",
+      "步驟四:使用rot7的解碼工具解碼，然後就可以得到flag了",
+    ],
+    note:"這一題是多層解碼，順序是base64->base64->rot7"
+  },
+  {
+    id:"flag hunter",
+    title: "Flag Hunter",
+    difficulty: "easy",
+    steps:
+    [
+      "挑戰概述:",
+    ],
+  },
+  {
     id:"sansalpha",
     title: "SansAlpha",
     difficulty: "normal",
@@ -120,7 +144,6 @@ const problems = [
       "輸入 /*/????64 */*，精確的匹配到base64",
       "輸入/*/???[!_]64 */*，匹配到/bin/base64",
       "輸入/*/???[!_]64 */????.*，得到flag.txt的base64編碼，解碼後就是flag了",
-
     ],
   },
   {

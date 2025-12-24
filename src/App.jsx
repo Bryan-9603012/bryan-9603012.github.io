@@ -1,6 +1,7 @@
+// App.jsx
+import { useState } from "react";
 import Terminal from "./components/Terminal";
 import PicoCTFModal from "./components/PicoCTFModal";
-import { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -8,172 +9,202 @@ function App() {
 
   return (
     <>
-      <div className="glow-bg"></div>
-      <div className="hero-gradient" aria-hidden="true"></div>
-      <div className="bottom-gradient" aria-hidden="true"></div>
+      {/* 背景光暈 */}
+      <div className="glow-bg" />
+      <div className="hero-gradient" aria-hidden="true" />
 
-      <div className="wrap">
-        <header>
-          <div className="logo">劉</div>
-          <div>
-            <h1>劉興源</h1>
-            <div className="tag">學生 • 科技愛好者</div>
+      {/* ===== 頂部導覽列（仿 BitShield） ===== */}
+      <header className="site-header">
+        <div className="site-header-inner">
+          <div className="brand">
+            <div className="brand-logo">劉</div>
+            <div className="brand-text">
+              <div className="brand-name">Bryan Liu</div>
+              <div className="brand-tagline">Student • Cyber & Web Dev</div>
+            </div>
           </div>
-        </header>
+          <nav className="nav-links">
+            <a href="#services">服務內容</a>
+            <a href="#projects">專案</a>
+            <a href="#learning">學習記錄</a>
+            <a href="#contact">聯絡我</a>
+          </nav>
+        </div>
+      </header>
 
-        <main className="card">
-          <h2>關於我</h2>
-          <p style={{ color: "var(--muted)", lineHeight: 1.75 }}>
-            我是 <strong>劉興源</strong>，一位熱愛科技的學生。這是我用 HTML/CSS 打造的個人網頁，展現了我對科技與程式設計的熱情。
+      {/* ===== 主內容區 ===== */}
+      <main className="page-main">
+        {/* Hero 區：左文右卡片，參考 BitShield 第一屏 */}
+        <section className="hero-section">
+          <div className="hero-text">
+            <p className="hero-eyebrow">PORTFOLIO • 2025</p>
+            <h1 className="hero-title">
+              為專案打造可靠又好看的技術基礎
+            </h1>
+            <p className="hero-subtitle">
+              我是 <strong>劉興源</strong>，目前專注在前端開發、
+              資安 CTF 與 Linux 環境練習。
+              這裡是我集中作品、練習與學習筆記的地方。
+            </p>
+            <div className="hero-actions">
+              <a href="#projects" className="btn">
+                查看專案
+              </a>
+              <button
+                type="button"
+                className="ghost btn"
+                onClick={() => setShowPicoPage(true)}
+              >
+                查看 picoCTF 解析
+              </button>
+            </div>
+            <p className="hero-note">
+              目前持續更新 React、CSS 動效與 picoCTF 題解。
+            </p>
+          </div>
+
+          <div className="hero-card">
+            <h3 className="hero-card-title">即時面板 · Terminal</h3>
+            <Terminal />
+          </div>
+        </section>
+
+        {/* ===== 服務 / 我能做什麼 ===== */}
+        <section id="services" className="section-card">
+          <h2>我現在在做什麼？</h2>
+          <p className="section-desc">
+            以前端為主，搭配一點資安與系統操作，慢慢把自己變成
+            「能切版、會寫邏輯、懂一點安全」的工程師。
           </p>
 
-          <hr
-            style={{
-              margin: "24px 0",
-              border: "none",
-              borderTop: "1px solid rgba(255,255,255,0.03)",
-            }}
-          />
-
-          <h3 style={{ color: "var(--neon-emerald)" }}>即時面板</h3>
-          <Terminal />
-
-          <hr
-            style={{
-              margin: "24px 0",
-              border: "none",
-              borderTop: "1px solid rgba(255,255,255,0.03)",
-            }}
-          />
-
-          <h3>技能</h3>
-          <div className="skills">
-            <span className="chip">HTML5</span>
-            <span className="chip">Modern CSS</span>
-            <span className="chip">Responsive</span>
-            <span className="chip">Accessibility</span>
-            <span className="chip">Design Systems</span>
-            <span className="chip">Performance</span>
-          </div>
-
-          <hr
-            style={{
-              margin: "24px 0",
-              border: "none",
-              borderTop: "1px solid rgba(255,255,255,0.03)",
-            }}
-          />
-
-          <div className="title" style={{ color: "var(--neon-cyan)", marginBottom: "20px" }}>
-            成就與認證
-          </div>
-          <div className="achievement-grid">
-            <div className="achievement-card" onClick={() => alert("取得時間：2023\n類型：程式設計基礎")}>
-              <div className="card-icon">🎓</div>
-              <div className="card-title">程式設計基礎</div>
-              <div className="card-desc">完成基礎課程認證</div>
+          <div className="services-grid">
+            <div className="service-item">
+              <h3>前端切版與互動</h3>
+              <p>HTML、Modern CSS、RWD、基本無障礙與動畫效果。</p>
             </div>
-
-            <div className="achievement-card" onClick={() => alert("取得時間：2023\n類型：網頁開發")}>
-              <div className="card-icon">💻</div>
-              <div className="card-title">網頁開發</div>
-              <div className="card-desc">前端技術能力認證</div>
+            <div className="service-item">
+              <h3>React 練習</h3>
+              <p>用 React 做個人面板、作品展示與簡單狀態管理。</p>
             </div>
-
-            <div className="achievement-card">
-              <div className="card-icon">🏆</div>
-              <div className="card-title">專案完成</div>
-              <div className="card-desc">首個作品集發布</div>
-            </div>
-
-            <div className="achievement-card">
-              <div className="card-icon">🌟</div>
-              <div className="card-title">創新設計</div>
-              <div className="card-desc">UI/UX 設計認證</div>
+            <div className="service-item">
+              <h3>CTF / 資安入門</h3>
+              <p>picoCTF 題目解題與筆記，從 Web / Crypto 慢慢拓展。</p>
             </div>
           </div>
-        </main>
 
-        <aside style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
-          <div className="card">
-            <h3 style={{ color: "var(--neon-magenta)" }}>專案</h3>
+          <div className="skills-row">
+            <h3>目前技能</h3>
+            <div className="skills">
+              <span className="chip">HTML5</span>
+              <span className="chip">Modern CSS</span>
+              <span className="chip">Responsive</span>
+              <span className="chip">React</span>
+              <span className="chip">Linux / CLI</span>
+              <span className="chip">picoCTF</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 專案區 ===== */}
+        <section id="projects" className="section-card">
+          <h2>專案 / 練習</h2>
+          <p className="section-desc">
+            這些是目前公開的練習作品，會持續增加新的網站與工具。
+          </p>
+
+          <div className="proj-list">
             <div className="proj">
               <div>
-                <div style={{ fontWeight: 700 }}>作品集網站</div>
-                <div style={{ color: "var(--muted)", fontSize: "13px" }}>
-                  靜態網站 / 設計與部署
+                <div className="proj-title">個人作品集網站</div>
+                <div className="proj-meta">
+                  React • CSS • GitHub Pages
                 </div>
               </div>
-              <div>
-                <a className="btn" href="#">檢視</a>
-              </div>
-            </div>
-
-            <div className="proj">
-              <div>
-                <div style={{ fontWeight: 700 }}>CSS 實驗室</div>
-                <div style={{ color: "var(--muted)", fontSize: "13px" }}>
-                  互動與微動畫
-                </div>
-              </div>
-              <div>
-                <a className="ghost btn" href="#">程式碼</a>
-              </div>
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "8px",
-                marginTop: "6px",
-              }}
-            >
-              <a className="btn" href="mailto:bryanhuang710910@gmail.com">
-                聯絡我
+              <a
+                className="btn"
+                href="https://bryan-9603012.github.io/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                檢視
               </a>
-              <a className="ghost btn" href="#">我的作品集</a>
             </div>
-          </div>
 
-          <div className="card">
-            <h3 style={{ color: "var(--neon-emerald)" }}>picoCTF 解析</h3>
-            <div
-              className="proj"
-              style={{ cursor: "pointer" }}
-              onClick={() => setShowPicoPage(true)}
-            >
+            <div className="proj">
               <div>
-                <div style={{ fontWeight: 700 }}>1 題 writeup</div>
-                <div style={{ color: "var(--muted)", fontSize: "13px" }}>
-                  簡單/一般/困難分級
+                <div className="proj-title">CSS 實驗室</div>
+                <div className="proj-meta">
+                  微動畫、Hover 效果與卡片設計
                 </div>
               </div>
+              <a className="ghost btn" href="#">
+                程式碼
+              </a>
+            </div>
+
+            <div className="proj">
               <div>
-                <span className="btn">進入解析區</span>
+                <div className="proj-title">picoCTF Writeups</div>
+                <div className="proj-meta">
+                  Web / Crypto 解題整理與心得
+                </div>
               </div>
+              <button
+                type="button"
+                className="ghost btn"
+                onClick={() => setShowPicoPage(true)}
+              >
+                查看解析
+              </button>
             </div>
           </div>
+        </section>
 
-          <div className="card">
-            <h4 style={{ color: "var(--neon-cyan)" }}>快速資料</h4>
-            <div
-              style={{
-                marginTop: "8px",
-                color: "var(--muted)",
-                fontSize: "13px",
-              }}
-            >
-              <div>所在：台灣</div>
-              <div>開始可用：2025-12</div>
-              <div>語言：中文（繁體）、英文</div>
+        {/* ===== 學習資料 / Notes 區（預留） ===== */}
+        <section id="learning" className="section-card">
+          <h2>學習記錄</h2>
+          <p className="section-desc">
+            把平常在課堂、線上資源與 CTF 中學到的東西整理成簡短筆記。
+          </p>
+
+          <div className="learning-grid">
+            <div className="learning-item">
+              <h3>React 基礎筆記</h3>
+              <p>JSX、Component、State 與 props 的重點整理。</p>
+            </div>
+            <div className="learning-item">
+              <h3>Linux / CLI</h3>
+              <p>常用指令與在 CTF / 開發中會用到的工具。</p>
+            </div>
+            <div className="learning-item">
+              <h3>picoCTF 題目分類</h3>
+              <p>照類型把題目與常見解法做索引，方便回顧。</p>
             </div>
           </div>
-        </aside>
-      </div>
+        </section>
 
-      <footer>
-        © 2025 劉興源。頁面為純 HTML + CSS（單檔）• 科技風格設計。
+        {/* ===== 底部聯絡我（仿 BitShield Contact） ===== */}
+        <section id="contact" className="section-card contact-section">
+          <div className="contact-text">
+            <h2>一起做點有趣的東西？</h2>
+            <p className="section-desc">
+              如果你對民宿官網、個人網站或 CTF / 學習交流有興趣，
+              歡迎寄信給我，一起討論看看可以做什麼。
+            </p>
+          </div>
+          <div className="contact-actions">
+            <a className="btn" href="mailto:bryanhuang710910@gmail.com">
+              寄信給我
+            </a>
+            <a className="ghost btn" href="#projects">
+              先看看專案
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        © 2025 劉興源 · Portfolio · Tech Style
       </footer>
 
       <PicoCTFModal

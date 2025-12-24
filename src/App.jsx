@@ -38,13 +38,10 @@ function App() {
         <section className="hero-section">
           <div className="hero-text">
             <p className="hero-eyebrow">PORTFOLIO • 2025</p>
-            <h1 className="hero-title">
-              為專案打造可靠又好看的技術基礎
-            </h1>
+            <h1 className="hero-title">為專案打造可靠又好看的技術基礎</h1>
             <p className="hero-subtitle">
-              我是 <strong>劉興源</strong>，目前專注在前端開發、
-              資安 CTF 與 Linux 環境練習。
-              這裡是我集中作品、練習與學習筆記的地方。
+              我是 <strong>劉興源</strong>，目前專注在前端開發、資安 CTF 與
+              Linux 環境練習。這裡是我集中作品、練習與學習筆記的地方。
             </p>
             <div className="hero-actions">
               <a href="#projects" className="btn">
@@ -63,9 +60,12 @@ function App() {
             </p>
           </div>
 
-          <div className="hero-card">
+          <div className="hero-card card">
             <h3 className="hero-card-title">即時面板 · Terminal</h3>
             <Terminal />
+            <div className="hint">
+              ← 可用指令：whoami、role、status、help、clear、問問題
+            </div>
           </div>
         </section>
 
@@ -116,9 +116,7 @@ function App() {
             <div className="proj">
               <div>
                 <div className="proj-title">個人作品集網站</div>
-                <div className="proj-meta">
-                  React • CSS • GitHub Pages
-                </div>
+                <div className="proj-meta">React • CSS • GitHub Pages</div>
               </div>
               <a
                 className="btn"
@@ -145,9 +143,7 @@ function App() {
             <div className="proj">
               <div>
                 <div className="proj-title">picoCTF Writeups</div>
-                <div className="proj-meta">
-                  Web / Crypto 解題整理與心得
-                </div>
+                <div className="proj-meta">Web / Crypto 解題整理與心得</div>
               </div>
               <button
                 type="button"
@@ -160,7 +156,7 @@ function App() {
           </div>
         </section>
 
-        {/* ===== 學習資料 / Notes 區（預留） ===== */}
+        {/* ===== 學習資料 / Notes 區 ===== */}
         <section id="learning" className="section-card">
           <h2>學習記錄</h2>
           <p className="section-desc">
@@ -179,6 +175,31 @@ function App() {
             <div className="learning-item">
               <h3>picoCTF 題目分類</h3>
               <p>照類型把題目與常見解法做索引，方便回顧。</p>
+
+              <ul
+                style={{
+                  marginTop: "8px",
+                  fontSize: "13px",
+                  color: "var(--text-muted)",
+                  paddingLeft: "18px",
+                }}
+              >
+                <li style={{ marginTop: "4px" }}>
+                  更詳細解析 →
+                  <button
+                    type="button"
+                    className="ghost btn"
+                    style={{
+                      marginLeft: "6px",
+                      padding: "2px 8px",
+                      fontSize: "12px",
+                    }}
+                    onClick={() => setShowPicoPage(true)}
+                  >
+                    開啟 picoCTF 解題區
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
         </section>

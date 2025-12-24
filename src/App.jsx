@@ -209,7 +209,7 @@ function App() {
           <div className="contact-text">
             <h2>一起做點有趣的東西？</h2>
             <p className="section-desc">
-              如果你對民宿官網、個人網站或 CTF / 學習交流有興趣，
+              如果你對picoCTF / 學習交流有興趣，
               歡迎寄信給我，一起討論看看可以做什麼。
             </p>
           </div>

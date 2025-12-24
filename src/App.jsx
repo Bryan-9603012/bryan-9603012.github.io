@@ -223,11 +223,6 @@ function App() {
           </div>
         </section>
       </main>
-
-      <footer className="site-footer">
-        © 2025 劉興源 · Portfolio · Tech Style
-      </footer>
-
       <PicoCTFModal
         isOpen={showPicoPage}
         onClose={() => setShowPicoPage(false)}

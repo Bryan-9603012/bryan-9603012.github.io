@@ -8,14 +8,7 @@ function App() {
   // 🔥 終端狀態
   const [terminalOutput, setTerminalOutput] = useState([
     '歡迎來到 Bryan 的 Linux 學習終端！',
-    '輸入 ls 查看教學內容，help 查看所有指令',
-    'bryan@portfolio:~$ uname -a',
-    'Linux portfolio 6.5.0-x86_64 GNU/Linux',
-    'bryan@portfolio:~$ whoami',
-    '劉興源 (Bryan)',
-    'bryan@portfolio:~$ role',
-    '資安學生 / React 開發者',
-    ''
+    '輸入 ls 查看教學內容，help 查看所有指令'
   ]);
   const [terminalInput, setTerminalInput] = useState('');
   const terminalRef = useRef(null);

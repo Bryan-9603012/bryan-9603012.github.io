@@ -3,5 +3,20 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/'  // 用戶網站 = 根路徑！
+  base: '/',
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        format: 'es',  // 🔥 修復 MIME Type
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
+      }
+    },
+    assetsInclude: ['**/*.jsx']
+  },
+  esbuild: {
+    jsxInject: `import React from 'react'`
+  }
 })

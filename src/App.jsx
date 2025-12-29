@@ -159,7 +159,7 @@ function App() {
         <section className="hero-section">
           <div className="hero-text">
             <p className="hero-eyebrow">PORTFOLIO • 2025</p>
-            <h1 className="hero-title">為專案打造可靠又好看的技術基礎</h1>
+            <h1 className="hero-title">資安 CTF + React 前端，實戰技能全展示</h1>
             <p className="hero-subtitle">
               我是 <strong>劉興源</strong>，目前專注在前端開發、資安 CTF 與
               Linux 環境練習。這裡是我集中作品、練習與學習筆記的地方。

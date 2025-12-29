@@ -1,6 +1,6 @@
-// App.jsx
 import { useState } from "react";
-import Terminal from "./components/Terminal";
+// 🔥 移除 Terminal import（解決 MIME Type 錯誤）
+// import Terminal from "./components/Terminal";
 import PicoCTFModal from "./components/PicoCTFModal";
 import "./App.css";
 
@@ -34,7 +34,7 @@ function App() {
 
       {/* ===== 主內容區 ===== */}
       <main className="page-main">
-        {/* Hero 區：左文右卡片，參考 BitShield 第一屏 */}
+        {/* Hero 區：左文右終端（內嵌版，無依賴） */}
         <section className="hero-section">
           <div className="hero-text">
             <p className="hero-eyebrow">PORTFOLIO • 2025</p>
@@ -60,11 +60,62 @@ function App() {
             </p>
           </div>
 
+          {/* 🔥 內嵌終端（完美解決白屏） */}
           <div className="hero-card card">
             <h3 className="hero-card-title">即時面板 · Terminal</h3>
-            <Terminal />
-            <div className="hint">
-              ← 可用指令：whoami、role、status、help、clear、問問題
+            <div 
+              style={{
+                height: '320px',
+                background: '#000',
+                color: '#00ff41',
+                padding: '20px',
+                borderRadius: '12px',
+                fontFamily: '"Courier New", monospace, Consolas',
+                fontSize: '14px',
+                overflowY: 'auto',
+                lineHeight: '1.4',
+                whiteSpace: 'pre-wrap',
+                boxShadow: 'inset 0 0 20px rgba(0,255,65,0.1)'
+              }}
+            >
+              <div style={{ marginBottom: '6px' }}>bryan@portfolio:~$ uname -a</div>
+              <div style={{ color: '#00ffff', marginBottom: '6px' }}>
+                Linux portfolio 6.5.0-x86_64 GNU/Linux
+              </div>
+              <div style={{ marginBottom: '6px' }}>bryan@portfolio:~$ whoami</div>
+              <div style={{ color: '#00ffff', marginBottom: '6px' }}>
+                劉興源 (Bryan)
+              </div>
+              <div style={{ marginBottom: '6px' }}>bryan@portfolio:~$ role</div>
+              <div style={{ color: '#00ffff', marginBottom: '6px' }}>
+                資安學生 / React 開發者
+              </div>
+              <div style={{ marginBottom: '6px' }}>bryan@portfolio:~$ ls</div>
+              <div style={{ color: '#00ff41', marginBottom: '12px' }}>
+                📁 linux  📓 notebook
+              </div>
+              <div style={{ marginBottom: '6px' }}>
+                bryan@portfolio:~$ cd linux/notebook && ls
+              </div>
+              <div style={{ color: '#00ff41' }}>
+                ch1 ch2 ch3 ch4 ch5 ch6 ch7 ch8 ch9 ch10
+                <br />
+                ch11 ch15 ch16 ch17 ch18 ch19 ch22~ch30
+                <br />
+                💾 30章 Linux 實作教學
+              </div>
+              <div style={{ 
+                color: '#00ffff', 
+                marginTop: '12px', 
+                fontSize: '12px',
+                borderTop: '1px solid #333',
+                paddingTop: '8px'
+              }}>
+                bryan@portfolio:linux/notebook$ _
+              </div>
+            </div>
+            <div className="hint" style={{ fontSize: '13px', marginTop: '8px' }}>
+              ← 可用指令：ls cd cat uname whoami role help clear
             </div>
           </div>
         </section>

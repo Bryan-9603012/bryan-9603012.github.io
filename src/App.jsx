@@ -8,7 +8,7 @@ function App() {
   // 🔥 終端狀態
   const [terminalOutput, setTerminalOutput] = useState([
     '歡迎來到 Bryan 的 Linux 學習終端！',
-    '輸入 ls 查看教學內容，help 查看所有指令'
+    '輸入 ls 查看教學內容，help 查看所有指令',
   ]);
   const [terminalInput, setTerminalInput] = useState('');
   const terminalRef = useRef(null);
@@ -54,6 +54,7 @@ function App() {
           '💻 系統資訊: uname whoami role status',
           '🧹 其他: clear help',
           '✅ 流程: cd linux → cd notebook → ls → cat ch1',
+          '📚 30章內容: ch1~ch30 每章獨立內容！',
           ''
         ]);
         break;
@@ -70,6 +71,9 @@ function App() {
         } else if (args[0] === 'notebook' && currentPathRef.current === 'linux') {
           currentPathRef.current = 'notebook';
           setTerminalOutput(prev => [...prev, '進入 notebook (30章 Linux 教學)']);
+        } else if (args[0] === '..' && currentPathRef.current !== 'root') {
+          currentPathRef.current = currentPathRef.current === 'notebook' ? 'linux' : 'root';
+          setTerminalOutput(prev => [...prev, '回到上一層目錄']);
         } else {
           setTerminalOutput(prev => [...prev, `cd: ${args[0]}: No such directory`]);
         }
@@ -77,21 +81,45 @@ function App() {
 
       case 'cat':
         if (currentPathRef.current === 'notebook' && args[0]) {
-          const content = args[0] === 'ch1' ? '=== Linux 歷史 ===\n1970 Unix → 1991 Linux Kernel (Linus Torvalds)\n📊 600+ 發行版：Ubuntu Kali Debian' :
-                          '=== Linux 發行版 ===\nKali Linux：資安滲透測試專用\nUbuntu：最受歡迎桌面版\n📦 預裝 600+ 資安工具';
-          setTerminalOutput(prev => [...prev, content]);
+          const chapterContent = {
+            'ch1': '=== Linux 歷史 ===\n1970 Unix (Ken Thompson)\n1991 Linux Kernel (Linus Torvalds)\n📊 600+ 發行版：Ubuntu Kali Debian',
+            'ch2': '=== Linux 發行版 ===\n🔥 Kali：資安滲透測試\n🐧 Ubuntu：桌面首選\n📦 Debian：穩定企業版\n🎮 Parrot OS：隱私保護',
+            'ch3': '=== Shell 介紹 ===\n📋 Bash (預設99%系統)\n🌈 Zsh + Oh My Zsh\n🐟 Fish (語法高亮)\n🔄 Tmux：終端多工器',
+            'ch4': '=== Bash 自訂 ===\nPS1變數控制提示符\n🌈 顏色：\\[\\e[32m\\]綠色\\e[0m\nnano ~/.bashrc 永久生效',
+            'ch5': '=== 幫助指令 ===\nman ls 查看手冊\n指令 --help 快速說明\napropos 關鍵字搜尋\ntldr.sh 簡化版 man頁',
+            'ch6': '=== 系統資訊 ===\n👤 whoami id hostname\n💻 uname -a lsb_release\n🌐 ip addr ss -tlnp\n💾 df -h lsblk',
+            'ch7': '=== 檔案導航 ===\npwd 當前路徑\nls -la 詳細列表\ncd ~ 家目錄\ncd - 上次目錄',
+            'ch8': '=== 檔案操作 ===\ntouch file.txt 新檔案\nmkdir -p a/b/c 多層\nmv src dest 移動/重命名\nrm -rf dir 強制刪除',
+            'ch9': '=== 文字編輯器 ===\n🅽 Nano：Ctrl+O儲存\n🅅 Vim：i插入 :q!離開\n📄 cat less head -10',
+            'ch10': '=== Vim 實戰 ===\nNormal：h j k l 移動\ndd刪行 yy複製 p貼上\nv視覺選取模式',
+            'ch11': '=== 檔案描述符 ===\n0 STDIN 1 STDOUT 2 STDERR\n> 覆寫 >> 附加 2>錯誤\n管道：cat | grep root',
+            'ch15': '=== 使用者管理 ===\n/etc/passwd /etc/shadow\nsudo useradd user\nsudo usermod -aG sudo user',
+            'ch16': '=== 套件管理 ===\n🍎 apt update && apt install\n🍠 dnf/yum (RedHat)\n📦 git clone https://...',
+            'ch17': '=== Systemd 服務 ===\nsystemctl start ssh\nsystemctl enable ssh\njournalctl -u ssh 日誌',
+            'ch18': '=== 排程任務 ===\ncrontab -e 編輯\n* * * * * 每分鐘\n0 6 * * * 每天6點',
+            'ch19': '=== 網路服務 ===\n🔒 SSH：port 22\n🌐 Apache：port 80\n📡 NFS：/etc/exports',
+            'ch22': '=== 容器技術 ===\n🐳 Docker：docker run -it\n🦘 LXC：lxc-create -t ubuntu\n輕量虛擬化',
+            'ch23': '=== 容器實戰 ===\ndocker pull ubuntu\ndocker run -it ubuntu bash\nlxc-start -n web -d',
+            'ch24': '=== 網路設定 ===\n🌐 ip addr show\n📄 /etc/network/interfaces\n靜態IP設定',
+            'ch25': '=== 遠端桌面 ===\n🖥️ VNC：vncserver :1\n🖥️ SSH -X xclock\n📡 XDMCP：UDP 177',
+            'ch26': '=== Linux 安全 ===\n🔒 SELinux AppArmor\n🛡️ Fail2ban ufw enable\n📋 /var/log/auth.log',
+            'ch29': '=== Solaris 簡介 ===\n🏢 Sun → Oracle\n💾 ZFS檔案系統\n📦 IPS套件管理',
+            'ch30': '=== Shell 快捷鍵 ===\n🚀 Ctrl+A行首 Ctrl+E行尾\n📜 Ctrl+R搜尋歷史\n🧹 Ctrl+L清屏'
+          }[args[0]] || `cat: ${args[0]}: No such file`;
+          setTerminalOutput(prev => [...prev, chapterContent]);
         } else {
-          setTerminalOutput(prev => [...prev, `cat: ${args[0]}: No such file`]);
+          setTerminalOutput(prev => [...prev, `cat: ${args[0]}: No such file or directory`]);
         }
         break;
 
       case 'pwd':
-        setTerminalOutput(prev => [...prev, currentPathRef.current]);
+        setTerminalOutput(prev => [...prev, `/${currentPathRef.current}`]);
         break;
 
       default:
         setTerminalOutput(prev => [...prev, `bash: ${command}: command not found`]);
     }
+    setTerminalInput('');
   }, []);
 
   // 自動滾動 + 聚焦
@@ -187,7 +215,6 @@ function App() {
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && terminalInput.trim()) {
                       processTerminalCommand(terminalInput.trim());
-                      setTerminalInput('');
                     }
                   }}
                   style={{
@@ -204,7 +231,7 @@ function App() {
               </div>
             </div>
             <div className="hint" style={{ fontSize: '13px', marginTop: '8px' }}>
-              ← 試試：ls / whoami / cd linux / help / clear
+              ← 試試：ls / whoami / cd linux / notebook / cat ch8 / help / clear
             </div>
           </div>
         </section>

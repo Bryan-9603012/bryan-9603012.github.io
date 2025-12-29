@@ -1,26 +1,47 @@
 // /api/ai.js
 import OpenAI from "openai";
 
-export default async function handler(req, res) {
-  // Vercel 會自動將 body 解析，但有時候需要 fallback
-  const body = req.body ?? await new Promise(resolve => {
-    let data = "";
-    req.on("data", chunk => data += chunk);
-    req.on("end", () => resolve(JSON.parse(data)));
-  });
+export const runtime = "edge"; // 使用 Edge Runtime 提升效能
 
-  const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-  });
+export async function POST(req) {
+  try {
+    // Vercel 自動解析 JSON body
+    const body = await req.json();
+    
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
 
-  const completion = await client.chat.completions.create({
-    model: "gpt-4.1-mini",
-    messages: [
-      { role: "user", content: body.message }
-    ]
-  });
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini", // 修正：gpt-4.1-mini → gpt-4o-mini
+      messages: [
+        { role: "user", content: body.message }
+      ],
+      max_tokens: 500, // 避免超時
+    });
 
-  return res.status(200).json({
-    reply: completion.choices[0].message.content
+    return Response.json({
+      reply: completion.choices[0].message.content
+    }, { 
+      headers: { 
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      }
+    });
+  } catch (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
+}
+
+// 處理 OPTIONS preflight
+export async function OPTIONS(req) {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    }
   });
 }

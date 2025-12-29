@@ -1,11 +1,111 @@
-import { useState } from "react";
-// 🔥 移除 Terminal import（解決 MIME Type 錯誤）
-// import Terminal from "./components/Terminal";
+import { useState, useRef, useCallback, useEffect } from "react";
 import PicoCTFModal from "./components/PicoCTFModal";
 import "./App.css";
 
 function App() {
   const [showPicoPage, setShowPicoPage] = useState(false);
+  
+  // 🔥 終端狀態
+  const [terminalOutput, setTerminalOutput] = useState([
+    '歡迎來到 Bryan 的 Linux 學習終端！',
+    '輸入 ls 查看教學內容，help 查看所有指令',
+    'bryan@portfolio:~$ uname -a',
+    'Linux portfolio 6.5.0-x86_64 GNU/Linux',
+    'bryan@portfolio:~$ whoami',
+    '劉興源 (Bryan)',
+    'bryan@portfolio:~$ role',
+    '資安學生 / React 開發者',
+    ''
+  ]);
+  const [terminalInput, setTerminalInput] = useState('');
+  const terminalRef = useRef(null);
+  const currentPathRef = useRef('root');
+  const inputRef = useRef(null);
+
+  const processTerminalCommand = useCallback((cmd) => {
+    const fullCmd = `bryan@portfolio:${currentPathRef.current}$ ${cmd}`;
+    setTerminalOutput(prev => [...prev, fullCmd]);
+
+    const parts = cmd.trim().toLowerCase().split(/\s+/);
+    const command = parts[0];
+    const args = parts.slice(1);
+
+    switch (command) {
+      case 'ls':
+        const items = currentPathRef.current === 'root' ? '📁 linux' :
+                     currentPathRef.current === 'linux' ? '📓 notebook' :
+                     'ch1 ch2 ch3 ch4 ch5 ch6 ch7 ch8 ch9 ch10 ch11 ch15 ch16 ch17 ch18 ch19 ch22 ch23 ch24 ch25 ch26 ch29 ch30';
+        setTerminalOutput(prev => [...prev, items]);
+        break;
+
+      case 'whoami':
+        setTerminalOutput(prev => [...prev, '劉興源 (Bryan)']);
+        break;
+
+      case 'role':
+        setTerminalOutput(prev => [...prev, '資安學生 / React 開發者']);
+        break;
+
+      case 'status':
+        setTerminalOutput(prev => [...prev, 'Online: 127 visits | CTF Rank: 1337 | Learning Linux']);
+        break;
+
+      case 'clear':
+      case '清除':
+        setTerminalOutput(['畫面已清除！']);
+        break;
+
+      case 'help':
+        setTerminalOutput(prev => [...prev, 
+          '📁 檔案系統: ls cd cat pwd',
+          '💻 系統資訊: uname whoami role status',
+          '🧹 其他: clear help',
+          '✅ 流程: cd linux → cd notebook → ls → cat ch1',
+          ''
+        ]);
+        break;
+
+      case 'cd':
+        if (!args[0]) {
+          currentPathRef.current = 'root';
+          setTerminalOutput(prev => [...prev, '回到根目錄']);
+          break;
+        }
+        if (args[0] === 'linux' && currentPathRef.current === 'root') {
+          currentPathRef.current = 'linux';
+          setTerminalOutput(prev => [...prev, '進入 linux 目錄']);
+        } else if (args[0] === 'notebook' && currentPathRef.current === 'linux') {
+          currentPathRef.current = 'notebook';
+          setTerminalOutput(prev => [...prev, '進入 notebook (30章 Linux 教學)']);
+        } else {
+          setTerminalOutput(prev => [...prev, `cd: ${args[0]}: No such directory`]);
+        }
+        break;
+
+      case 'cat':
+        if (currentPathRef.current === 'notebook' && args[0]) {
+          const content = args[0] === 'ch1' ? '=== Linux 歷史 ===\n1970 Unix → 1991 Linux Kernel (Linus Torvalds)\n📊 600+ 發行版：Ubuntu Kali Debian' :
+                          '=== Linux 發行版 ===\nKali Linux：資安滲透測試專用\nUbuntu：最受歡迎桌面版\n📦 預裝 600+ 資安工具';
+          setTerminalOutput(prev => [...prev, content]);
+        } else {
+          setTerminalOutput(prev => [...prev, `cat: ${args[0]}: No such file`]);
+        }
+        break;
+
+      case 'pwd':
+        setTerminalOutput(prev => [...prev, currentPathRef.current]);
+        break;
+
+      default:
+        setTerminalOutput(prev => [...prev, `bash: ${command}: command not found`]);
+    }
+  }, []);
+
+  // 自動滾動 + 聚焦
+  useEffect(() => {
+    terminalRef.current?.scrollTo(0, terminalRef.current.scrollHeight);
+    inputRef.current?.focus();
+  }, [terminalOutput]);
 
   return (
     <>
@@ -13,7 +113,7 @@ function App() {
       <div className="glow-bg" />
       <div className="hero-gradient" aria-hidden="true" />
 
-      {/* ===== 頂部導覽列（仿 BitShield） ===== */}
+      {/* ===== 頂部導覽列 ===== */}
       <header className="site-header">
         <div className="site-header-inner">
           <div className="brand">
@@ -34,7 +134,7 @@ function App() {
 
       {/* ===== 主內容區 ===== */}
       <main className="page-main">
-        {/* Hero 區：左文右終端（內嵌版，無依賴） */}
+        {/* Hero 區：左文右互動終端 */}
         <section className="hero-section">
           <div className="hero-text">
             <p className="hero-eyebrow">PORTFOLIO • 2025</p>
@@ -44,28 +144,21 @@ function App() {
               Linux 環境練習。這裡是我集中作品、練習與學習筆記的地方。
             </p>
             <div className="hero-actions">
-              <a href="#projects" className="btn">
-                查看專案
-              </a>
-              <button
-                type="button"
-                className="ghost btn"
-                onClick={() => setShowPicoPage(true)}
-              >
+              <a href="#projects" className="btn">查看專案</a>
+              <button type="button" className="ghost btn" onClick={() => setShowPicoPage(true)}>
                 查看 picoCTF 解析
               </button>
             </div>
-            <p className="hero-note">
-              目前持續更新 React、CSS 動效與 picoCTF 題解。
-            </p>
+            <p className="hero-note">目前持續更新 React、CSS 動效與 picoCTF 題解。</p>
           </div>
 
-          {/* 🔥 內嵌終端（完美解決白屏） */}
+          {/* 🔥 完整互動終端 */}
           <div className="hero-card card">
             <h3 className="hero-card-title">即時面板 · Terminal</h3>
             <div 
+              ref={terminalRef}
               style={{
-                height: '320px',
+                height: '340px',
                 background: '#000',
                 color: '#00ff41',
                 padding: '20px',
@@ -78,56 +171,57 @@ function App() {
                 boxShadow: 'inset 0 0 20px rgba(0,255,65,0.1)'
               }}
             >
-              <div style={{ marginBottom: '6px' }}>bryan@portfolio:~$ uname -a</div>
-              <div style={{ color: '#00ffff', marginBottom: '6px' }}>
-                Linux portfolio 6.5.0-x86_64 GNU/Linux
-              </div>
-              <div style={{ marginBottom: '6px' }}>bryan@portfolio:~$ whoami</div>
-              <div style={{ color: '#00ffff', marginBottom: '6px' }}>
-                劉興源 (Bryan)
-              </div>
-              <div style={{ marginBottom: '6px' }}>bryan@portfolio:~$ role</div>
-              <div style={{ color: '#00ffff', marginBottom: '6px' }}>
-                資安學生 / React 開發者
-              </div>
-              <div style={{ marginBottom: '6px' }}>bryan@portfolio:~$ ls</div>
-              <div style={{ color: '#00ff41', marginBottom: '12px' }}>
-                📁 linux  📓 notebook
-              </div>
-              <div style={{ marginBottom: '6px' }}>
-                bryan@portfolio:~$ cd linux/notebook && ls
-              </div>
-              <div style={{ color: '#00ff41' }}>
-                ch1 ch2 ch3 ch4 ch5 ch6 ch7 ch8 ch9 ch10
-                <br />
-                ch11 ch15 ch16 ch17 ch18 ch19 ch22~ch30
-                <br />
-                💾 30章 Linux 實作教學
-              </div>
-              <div style={{ 
-                color: '#00ffff', 
-                marginTop: '12px', 
-                fontSize: '12px',
-                borderTop: '1px solid #333',
-                paddingTop: '8px'
-              }}>
-                bryan@portfolio:linux/notebook$ _
+              {terminalOutput.map((line, index) => (
+                <div key={index} style={{ marginBottom: '4px' }}>
+                  {line}
+                </div>
+              ))}
+              <div style={{ display: 'flex', alignItems: 'center', marginTop: '4px' }}>
+                <span 
+                  style={{ 
+                    color: '#00ffff', 
+                    marginRight: '8px',
+                    fontWeight: '600',
+                    minWidth: '140px'
+                  }}
+                >
+                  bryan@portfolio:{currentPathRef.current}$
+                </span>
+                <input 
+                  ref={inputRef}
+                  value={terminalInput}
+                  onChange={(e) => setTerminalInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && terminalInput.trim()) {
+                      processTerminalCommand(terminalInput.trim());
+                      setTerminalInput('');
+                    }
+                  }}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: '#00ff41',
+                    fontFamily: 'inherit',
+                    fontSize: 'inherit',
+                    outline: 'none',
+                    flex: 1
+                  }}
+                  placeholder="試試 ls 或 help..."
+                />
               </div>
             </div>
             <div className="hint" style={{ fontSize: '13px', marginTop: '8px' }}>
-              ← 可用指令：ls cd cat uname whoami role help clear
+              ← 試試：ls / whoami / cd linux / help / clear
             </div>
           </div>
         </section>
 
-        {/* ===== 服務 / 我能做什麼 ===== */}
+        {/* ===== 服務區 ===== */}
         <section id="services" className="section-card">
           <h2>我現在在做什麼？</h2>
           <p className="section-desc">
-            以前端為主，搭配一點資安與系統操作，慢慢把自己變成
-            「能切版、會寫邏輯、懂一點安全」的工程師。
+            以前端為主，搭配一點資安與系統操作，慢慢把自己變成「能切版、會寫邏輯、懂一點安全」的工程師。
           </p>
-
           <div className="services-grid">
             <div className="service-item">
               <h3>前端切版與互動</h3>
@@ -142,7 +236,6 @@ function App() {
               <p>picoCTF 題目解題與筆記，從 Web / Crypto 慢慢拓展。</p>
             </div>
           </div>
-
           <div className="skills-row">
             <h3>目前技能</h3>
             <div className="skills">
@@ -159,61 +252,42 @@ function App() {
         {/* ===== 專案區 ===== */}
         <section id="projects" className="section-card">
           <h2>專案 / 練習</h2>
-          <p className="section-desc">
-            這些是目前公開的練習作品，會持續增加新的網站與工具。
-          </p>
-
+          <p className="section-desc">這些是目前公開的練習作品，會持續增加新的網站與工具。</p>
           <div className="proj-list">
             <div className="proj">
               <div>
                 <div className="proj-title">個人作品集網站</div>
                 <div className="proj-meta">React • CSS • GitHub Pages</div>
               </div>
-              <a
-                className="btn"
-                href="https://bryan-9603012.github.io/"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="btn" href="https://bryan-9603012.github.io/" target="_blank" rel="noreferrer">
                 檢視
               </a>
             </div>
-
             <div className="proj">
               <div>
                 <div className="proj-title">CSS 實驗室</div>
-                <div className="proj-meta">
-                  微動畫、Hover 效果與卡片設計
-                </div>
+                <div className="proj-meta">微動畫、Hover 效果與卡片設計</div>
               </div>
-              <a className="ghost btn" href="#">
-                程式碼
-              </a>
+              <a className="ghost btn" href="#">程式碼</a>
             </div>
-
             <div className="proj">
               <div>
                 <div className="proj-title">picoCTF Writeups</div>
                 <div className="proj-meta">Web / Crypto 解題整理與心得</div>
               </div>
-              <button
-                type="button"
-                className="ghost btn"
-                onClick={() => setShowPicoPage(true)}
-              >
+              <button type="button" className="ghost btn" onClick={() => setShowPicoPage(true)}>
                 查看解析
               </button>
             </div>
           </div>
         </section>
 
-        {/* ===== 學習資料 / Notes 區 ===== */}
+        {/* ===== 學習記錄 ===== */}
         <section id="learning" className="section-card">
           <h2>學習記錄</h2>
           <p className="section-desc">
             把平常在課堂、線上資源與 CTF 中學到的東西整理成簡短筆記。
           </p>
-
           <div className="learning-grid">
             <div className="learning-item">
               <h3>React 基礎筆記</h3>
@@ -226,25 +300,13 @@ function App() {
             <div className="learning-item">
               <h3>picoCTF 題目分類</h3>
               <p>照類型把題目與常見解法做索引，方便回顧。</p>
-
-              <ul
-                style={{
-                  marginTop: "8px",
-                  fontSize: "13px",
-                  color: "var(--text-muted)",
-                  paddingLeft: "18px",
-                }}
-              >
+              <ul style={{ marginTop: "8px", fontSize: "13px", color: "var(--text-muted)", paddingLeft: "18px" }}>
                 <li style={{ marginTop: "4px" }}>
                   更詳細解析 →
                   <button
                     type="button"
                     className="ghost btn"
-                    style={{
-                      marginLeft: "6px",
-                      padding: "2px 8px",
-                      fontSize: "12px",
-                    }}
+                    style={{ marginLeft: "6px", padding: "2px 8px", fontSize: "12px" }}
                     onClick={() => setShowPicoPage(true)}
                   >
                     開啟 picoCTF 解題區
@@ -255,29 +317,22 @@ function App() {
           </div>
         </section>
 
-        {/* ===== 底部聯絡我（仿 BitShield Contact） ===== */}
+        {/* ===== 聯絡我 ===== */}
         <section id="contact" className="section-card contact-section">
           <div className="contact-text">
             <h2>一起做點有趣的東西？</h2>
             <p className="section-desc">
-              如果你對picoCTF / 學習交流有興趣，
-              歡迎寄信給我，一起討論看看可以做什麼。
+              如果你對picoCTF / 學習交流有興趣，歡迎寄信給我，一起討論看看可以做什麼。
             </p>
           </div>
           <div className="contact-actions">
-            <a className="btn" href="mailto:bryanhuang710910@gmail.com">
-              寄信給我
-            </a>
-            <a className="ghost btn" href="#projects">
-              先看看專案
-            </a>
+            <a className="btn" href="mailto:bryanhuang710910@gmail.com">寄信給我</a>
+            <a className="ghost btn" href="#projects">先看看專案</a>
           </div>
         </section>
       </main>
-      <PicoCTFModal
-        isOpen={showPicoPage}
-        onClose={() => setShowPicoPage(false)}
-      />
+      
+      <PicoCTFModal isOpen={showPicoPage} onClose={() => setShowPicoPage(false)} />
     </>
   );
 }

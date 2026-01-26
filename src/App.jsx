@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import PicoCTFModal from "./components/PicoCTFModal";
+import Skills from "./components/Skills";  // 🔥 新增這行
 import "./App.css";
 
 function App() {

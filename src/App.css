@@ -14,9 +14,9 @@
 }
 
 .site-header-inner {
-  max-width: 1240px;               /* 原本 1100 → 拉寬一點 */
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 12px 28px;              /* 稍微加大 padding */
+  padding: 12px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,7 +51,7 @@
 
 .nav-links {
   display: flex;
-  gap: 22px;                       /* 間距稍微加大 */
+  gap: 22px;
   font-size: 13px;
 }
 
@@ -64,11 +64,11 @@
   color: var(--accent-cyan);
 }
 
-/* ===== 主內容容器（改成一欄多 section） ===== */
+/* ===== 主內容容器 ===== */
 .page-main {
-  max-width: 1240px;               /* 原本 1100 → 同樣拉寬 */
-  margin: 20px auto 40px;          /* 往上貼一點：32px → 20px */
-  padding: 0 28px 40px;            /* 和 header 對齊 */
+  max-width: 1240px;
+  margin: 20px auto 40px;
+  padding: 0 28px 40px;
   display: flex;
   flex-direction: column;
   gap: 26px;
@@ -99,13 +99,13 @@
 }
 
 .hero-title {
-  font-size: 30px;                 /* 原本 26 → 放大一階 */
+  font-size: 30px;
   line-height: 1.35;
   margin: 0 0 12px;
 }
 
 .hero-subtitle {
-  font-size: 15px;                 /* 原本 14 → 放大一點 */
+  font-size: 15px;
   color: var(--text-muted);
   line-height: 1.9;
   margin: 0 0 20px;
@@ -123,7 +123,184 @@
   color: var(--text-muted);
 }
 
-/* Terminal 卡片放在右側 */
+/* 🔥 新增：資安動畫輪播樣式 */
+.hero-visual {
+  margin: 24px 0;
+}
+
+.security-animations {
+  height: 200px;
+  padding: 20px;
+  background: rgba(0, 20, 40, 0.9);
+  border: 2px solid #00ff41;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+  overflow: hidden;
+  position: relative;
+  font-family: 'Courier New', 'Consolas', monospace;
+}
+
+/* 輪播動畫 */
+@keyframes slideCarousel {
+  0%, 33% { transform: translateX(0); }
+  34%, 66% { transform: translateX(-105%); }
+  67%, 100% { transform: translateX(-210%); }
+}
+
+.security-animations .anim-container {
+  display: flex;
+  height: 100%;
+  animation: slideCarousel 12s infinite;
+  gap: 20px;
+}
+
+.anim-scan, .anim-burp, .anim-shell {
+  min-width: 280px;
+  color: #00ff41;
+  flex-shrink: 0;
+}
+
+.glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+.scan-header, .burp-header, .shell-header {
+  font-weight: bold;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.scan-progress {
+  background: rgba(0,0,0,0.6);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #00ff41;
+}
+
+.scan-bar {
+  height: 6px;
+  background: rgba(0,0,0,0.8);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.scan-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff41, #00aa00);
+  border-radius: 2px;
+  animation: scanProgress 2s infinite;
+}
+
+@keyframes scanProgress {
+  0%, 100% { width: 0%; }
+  50% { width: 85%; }
+}
+
+.scan-ports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.port {
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.port.open { 
+  background: rgba(0,255,65,0.2); 
+  color: #00ff41; 
+  box-shadow: 0 0 8px rgba(0,255,65,0.4);
+}
+
+.port.closed { 
+  background: rgba(255,68,68,0.2); 
+  color: #ff4444; 
+  animation: blink 1s infinite; 
+}
+
+@keyframes blink { 50% { opacity: 0.4; } }
+
+.packet {
+  background: rgba(0,0,0,0.7);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.packet-header {
+  color: #ff4444;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.payload {
+  display: block;
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+.payload-modified {
+  color: #00ff41 !important;
+  font-weight: bold;
+  animation: flash 1.5s infinite;
+}
+
+@keyframes flash {
+  0%, 100% { background: rgba(0,255,65,0.1); }
+  50% { background: rgba(0,255,65,0.3); }
+}
+
+.shell-output {
+  background: rgba(0,0,0,0.8);
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #00ffff;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.shell-connect {
+  color: #00ff41;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+  margin: 6px 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+/* Skills 標籤樣式 */
+.skills-showcase {
+  max-width: 100%;
+}
+
+.skill-tag {
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.skill-tag:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.skill-tag.blue:hover {
+  box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+}
+
+.skill-tag.red:hover {
+  box-shadow: 0 4px 12px rgba(239,68,68,0.4);
+}
+
+/* Terminal 卡片 */
 .hero-card {
   display: flex;
   flex-direction: column;
@@ -136,7 +313,7 @@
   border-radius: 24px;
   border: 1px solid rgba(148, 163, 184, 0.35);
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.95);
-  padding: 24px 24px 26px;         /* 比原本略大一點 */
+  padding: 24px 24px 26px;
 }
 
 .section-desc {
@@ -146,12 +323,11 @@
   margin: 4px 0 18px;
 }
 
-/* 服務與學習用的 grid */
 .services-grid,
 .learning-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;                       /* 間距略大 */
+  gap: 18px;
   margin-bottom: 18px;
 }
 
@@ -180,13 +356,11 @@
   margin-top: 12px;
 }
 
-/* 專案列表 */
 .proj-list {
   display: flex;
   flex-direction: column;
 }
 
-/* 聯絡區 */
 .contact-section {
   display: flex;
   flex-wrap: wrap;
@@ -200,9 +374,8 @@
   gap: 10px;
 }
 
-/* Footer */
 .site-footer {
-  max-width: 1240px;               /* 跟 page-main 一致 */
+  max-width: 1240px;
   margin: 0 auto 24px;
   padding: 0 28px;
   text-align: center;
@@ -210,21 +383,26 @@
   color: var(--text-muted);
 }
 
-/* RWD for hero / grids */
+/* RWD */
 @media (max-width: 900px) {
   .hero-section {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
-
+  
   .services-grid,
   .learning-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
+  
+  .security-animations {
+    height: 180px;
+  }
+  
   .page-main {
     padding: 0 18px 32px;
   }
-
+  
   .site-header-inner {
     padding: 10px 18px;
   }
@@ -235,12 +413,21 @@
   .learning-grid {
     grid-template-columns: 1fr;
   }
-
+  
   .hero-title {
     font-size: 24px;
   }
-
+  
   .hero-subtitle {
     font-size: 14px;
+  }
+  
+  .security-animations {
+    height: 160px;
+    padding: 16px;
+  }
+  
+  .anim-scan, .anim-burp, .anim-shell {
+    min-width: 240px;
   }
 }

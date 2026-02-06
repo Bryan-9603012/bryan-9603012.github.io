@@ -1,0 +1,91 @@
+.lnm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lnm-modal {
+  width: min(1200px, 92vw);
+  height: min(760px, 88vh);
+  background: rgba(18, 18, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.55);
+}
+
+.lnm-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lnm-title {
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.lnm-sub {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+.lnm-close {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.lnm-body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  height: calc(100% - 58px);
+}
+
+.lnm-sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  overflow: auto;
+}
+
+.lnm-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 10px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.lnm-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.lnm-item.active {
+  background: rgba(0, 255, 65, 0.10);
+  border-color: rgba(0, 255, 65, 0.22);
+}
+
+.lnm-content {
+  padding: 18px 18px 24px;
+  overflow: auto;
+}
+
+.lnm-empty {
+  opacity: 0.9;
+}

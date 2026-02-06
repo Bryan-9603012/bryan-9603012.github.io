@@ -1,7 +1,7 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import PicoCTFModal from "./components/PicoCTFModal";
 import LinuxNotesModal from "./components/LinuxNotesModal";
-import Skills from "./components/Skills";
+import BadgeSvg from "./components/BadgeSvg";
 import "./App.css";
 
 function App() {
@@ -38,6 +38,17 @@ function App() {
         break;
       }
 
+      case "help":
+        setTerminalOutput((prev) => [
+          ...prev,
+          "📁 檔案系統: ls cd pwd",
+          "💻 系統資訊: whoami role status",
+          "🧹 其他: clear help",
+          "✅ 流程: cd linux → cd notebook → ls",
+          "",
+        ]);
+        break;
+
       case "whoami":
         setTerminalOutput((prev) => [...prev, "劉興源 (Bryan)"]);
         break;
@@ -49,7 +60,7 @@ function App() {
       case "status":
         setTerminalOutput((prev) => [
           ...prev,
-          "Online: 127 visits | CTF Rank: 1337 | Learning Linux",
+          "Learning: Linux Roadmap + picoCTF Writeups + React UI",
         ]);
         break;
 
@@ -58,60 +69,41 @@ function App() {
         setTerminalOutput(["畫面已清除！"]);
         break;
 
-      case "help":
-        setTerminalOutput((prev) => [
-          ...prev,
-          "📁 檔案系統: ls cd cat pwd",
-          "💻 系統資訊: uname whoami role status",
-          "🧹 其他: clear help",
-          "✅ 流程: cd linux → cd notebook → ls → cat ch1",
-          "📚 30章內容: ch1~ch30 每章獨立內容！",
-          "",
-        ]);
-        break;
-
       case "cd":
         if (!args[0]) {
           currentPathRef.current = "root";
           setTerminalOutput((prev) => [...prev, "回到根目錄"]);
           break;
         }
+
         if (args[0] === "linux" && currentPathRef.current === "root") {
           currentPathRef.current = "linux";
           setTerminalOutput((prev) => [...prev, "進入 linux 目錄"]);
-        } else if (
-          args[0] === "notebook" &&
-          currentPathRef.current === "linux"
-        ) {
+          break;
+        }
+
+        if (args[0] === "notebook" && currentPathRef.current === "linux") {
           currentPathRef.current = "notebook";
-          setTerminalOutput((prev) => [
-            ...prev,
-            "進入 notebook (30章 Linux 教學)",
-          ]);
-        } else if (args[0] === ".." && currentPathRef.current !== "root") {
+          setTerminalOutput((prev) => [...prev, "進入 notebook"]);
+          break;
+        }
+
+        if (args[0] === ".." && currentPathRef.current !== "root") {
           currentPathRef.current =
             currentPathRef.current === "notebook" ? "linux" : "root";
           setTerminalOutput((prev) => [...prev, "回到上一層目錄"]);
-        } else {
-          setTerminalOutput((prev) => [
-            ...prev,
-            `cd: ${args[0]}: No such directory`,
-          ]);
+          break;
         }
+
+        setTerminalOutput((prev) => [...prev, `cd: ${args[0]}: No such directory`]);
         break;
 
       case "pwd":
-        setTerminalOutput((prev) => [
-          ...prev,
-          `/${currentPathRef.current}`,
-        ]);
+        setTerminalOutput((prev) => [...prev, `/${currentPathRef.current}`]);
         break;
 
       default:
-        setTerminalOutput((prev) => [
-          ...prev,
-          `bash: ${command}: command not found`,
-        ]);
+        setTerminalOutput((prev) => [...prev, `bash: ${command}: command not found`]);
     }
 
     setTerminalInput("");
@@ -121,6 +113,26 @@ function App() {
     terminalRef.current?.scrollTo(0, terminalRef.current.scrollHeight);
     inputRef.current?.focus();
   }, [terminalOutput]);
+
+  // ===== 只放「目前真的有的成果」(不補滿、不生成假徽章) =====
+  const achievements = useMemo(
+    () => ({
+      linux: [
+        { label: "Permissions（權限）", status: "done" },
+        { label: "Users / Groups（使用者）", status: "doing" },
+      ],
+      ctf: [
+        { label: "picoCTF Writeups（整理中）", status: "doing" },
+        { label: "Web 類題型", status: "doing" },
+        { label: "General Skills", status: "done" },
+      ],
+      tools: [
+        { label: "Linux CLI", status: "doing" },
+        { label: "React 基礎", status: "doing" },
+      ],
+    }),
+    []
+  );
 
   return (
     <>
@@ -135,15 +147,14 @@ function App() {
             <div className="brand-logo">劉</div>
             <div className="brand-text">
               <div className="brand-name">Bryan Liu</div>
-              <div className="brand-tagline">
-                Student • Cyber & Web Dev
-              </div>
+              <div className="brand-tagline">Student • Cyber & Web Dev</div>
             </div>
           </div>
+
           <nav className="nav-links">
             <a href="#services">服務內容</a>
-            <a href="#projects">專案</a>
-            <a href="#learning">學習記錄</a>
+            <a href="#projects">學習主舞台</a>
+            <a href="#learning">成果徽章</a>
             <a href="#contact">聯絡我</a>
           </nav>
         </div>
@@ -155,32 +166,32 @@ function App() {
         <section className="hero-section">
           <div className="hero-text">
             <p className="hero-eyebrow">PORTFOLIO • 2025</p>
-            <h1 className="hero-title">
-              資安 CTF + React 前端，實戰技能全展示
-            </h1>
+            <h1 className="hero-title">資安 CTF + React 前端，實戰技能全展示</h1>
             <p className="hero-subtitle">
-              我是 <strong>劉興源</strong>，目前專注在前端開發、資安
-              CTF 與 Linux 環境練習。
+              我是 <strong>劉興源</strong>，目前把重心放在 Linux 系統能力與 CTF
+              解題思路，同時用 React 把內容整理成可讀、可展示的形式。
             </p>
+
             <div className="hero-actions">
               <a href="#projects" className="btn">
-                查看專案
+                看我的學習主舞台
               </a>
-              <button
-                type="button"
-                className="ghost btn"
-                onClick={() => setShowPicoPage(true)}
-              >
-                查看 picoCTF 解析
+              <button type="button" className="ghost btn" onClick={() => setShowLinuxNotes(true)}>
+                開啟 Linux Notes
+              </button>
+              <button type="button" className="ghost btn" onClick={() => setShowPicoPage(true)}>
+                開啟 picoCTF Writeups
               </button>
             </div>
+
+            <p className="hero-note">
+              目前沒有「產品型專案」在進行，但我有持續產出可驗證的學習成果（筆記、題解、整理）。
+            </p>
           </div>
 
           {/* ===== Terminal ===== */}
           <div className="hero-card card">
-            <h3 className="hero-card-title">
-              即時面板 · Terminal
-            </h3>
+            <h3 className="hero-card-title">即時面板 · Terminal</h3>
             <div
               ref={terminalRef}
               style={{
@@ -189,21 +200,27 @@ function App() {
                 color: "#00ff41",
                 padding: "20px",
                 borderRadius: "12px",
-                fontFamily:
-                  '"Courier New", monospace, Consolas',
+                fontFamily: "monospace",
                 fontSize: "14px",
                 overflowY: "auto",
                 whiteSpace: "pre-wrap",
+                lineHeight: "1.4",
+                boxShadow: "inset 0 0 20px rgba(0,255,65,0.1)",
               }}
             >
               {terminalOutput.map((line, i) => (
-                <div key={i}>{line}</div>
+                <div key={i} style={{ marginBottom: "4px" }}>
+                  {line}
+                </div>
               ))}
-              <div style={{ display: "flex" }}>
+
+              <div style={{ display: "flex", alignItems: "center", marginTop: "4px" }}>
                 <span
                   style={{
                     color: "#00ffff",
                     marginRight: "8px",
+                    fontWeight: 600,
+                    minWidth: "140px",
                   }}
                 >
                   bryan@portfolio:{currentPathRef.current}$
@@ -211,17 +228,10 @@ function App() {
                 <input
                   ref={inputRef}
                   value={terminalInput}
-                  onChange={(e) =>
-                    setTerminalInput(e.target.value)
-                  }
+                  onChange={(e) => setTerminalInput(e.target.value)}
                   onKeyDown={(e) => {
-                    if (
-                      e.key === "Enter" &&
-                      terminalInput.trim()
-                    ) {
-                      processTerminalCommand(
-                        terminalInput.trim()
-                      );
+                    if (e.key === "Enter" && terminalInput.trim()) {
+                      processTerminalCommand(terminalInput.trim());
                     }
                   }}
                   style={{
@@ -231,55 +241,201 @@ function App() {
                     outline: "none",
                     flex: 1,
                   }}
+                  placeholder="試試 ls 或 help..."
                 />
+              </div>
+            </div>
+
+            <div className="hint" style={{ fontSize: "13px", marginTop: "8px" }}>
+              ← 試試：ls / help / cd linux / cd notebook / pwd / clear
+            </div>
+          </div>
+        </section>
+
+        {/* ===== Services ===== */}
+        <section id="services" className="section-card">
+          <h2>我現在在做什麼？</h2>
+          <p className="section-desc">
+            以前端為主，搭配資安與 Linux 系統實作，培養能實戰、能解釋的工程能力。
+          </p>
+
+          <div className="services-grid">
+            <div className="service-item">
+              <h3>前端介面與互動</h3>
+              <p>HTML、Modern CSS、RWD 與互動效果實作。</p>
+            </div>
+
+            <div className="service-item">
+              <h3>React 應用開發</h3>
+              <p>Component 設計、Modal、狀態管理與模組化。</p>
+            </div>
+
+            <div className="service-item">
+              <h3>Linux 與資安實務</h3>
+              <p>權限、使用者、服務與 CTF 常見觀念整理。</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 原本 Projects 的位置：改成「學習主舞台」 ===== */}
+        <section id="projects" className="section-card">
+          <h2>學習主舞台</h2>
+          <p className="section-desc">
+            我把學習分成「系統性理解」與「實戰解題」兩條線同步前進：左邊打地基、右邊練實戰。
+          </p>
+
+          <div className="learning-grid two-col">
+            {/* 左：Linux Notes */}
+            <div className="learning-item">
+              <div className="learning-head">
+                <h3>Linux / CLI 筆記</h3>
+                <span className="mini-pill">System Learning</span>
+              </div>
+              <p>
+                以資安視角整理 Linux 的權限、使用者、服務與系統管理概念，強調「為什麼要這樣設計」。
+              </p>
+              <ul className="learning-points">
+                <li>最小權限原則（Least Privilege）</li>
+                <li>使用者 / 群組 / sudo 觀念</li>
+                <li>服務管理與日誌追蹤</li>
+              </ul>
+              <div className="learning-actions">
+                <button type="button" className="btn" onClick={() => setShowLinuxNotes(true)}>
+                  開啟 Linux Notes
+                </button>
+                <a className="ghost btn" href="#learning">
+                  看成果徽章
+                </a>
+              </div>
+            </div>
+
+            {/* 右：picoCTF */}
+            <div className="learning-item">
+              <div className="learning-head">
+                <h3>picoCTF 解題紀錄</h3>
+                <span className="mini-pill">Practical CTF</span>
+              </div>
+              <p>
+                將題目依類型整理，記錄解題思路、踩過的坑與修正方式，讓「怎麼想」比「答案」更清楚。
+              </p>
+              <ul className="learning-points">
+                <li>Web / Crypto / General Skills</li>
+                <li>解題流程（輸入 → 觀察 → 推理 → 驗證）</li>
+                <li>常見陷阱：編碼、權限、路徑、條件繞過</li>
+              </ul>
+              <div className="learning-actions">
+                <button type="button" className="btn" onClick={() => setShowPicoPage(true)}>
+                  開啟 Writeups
+                </button>
+                <a className="ghost btn" href="#learning">
+                  看成果徽章
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ===== 學習記錄 ===== */}
+        {/* ===== 成果徽章：只渲染目前有的，不補滿 ===== */}
         <section id="learning" className="section-card">
-          <h2>學習記錄</h2>
-          <div className="learning-grid">
-            <div className="learning-item">
-              <h3>Linux / CLI</h3>
-              <p>常用指令與資安視角系統筆記。</p>
-              <button
-                type="button"
-                className="ghost btn"
-                style={{ marginTop: "10px" }}
-                onClick={() => setShowLinuxNotes(true)}
-              >
-                開啟 Linux Notes
-              </button>
+          <h2>成果徽章</h2>
+          <p className="section-desc">
+            只呈現目前「真的有進度」的內容：完成 / 進行中。讓成果可追蹤、可驗證，不用填滿牆。
+          </p>
+
+          <div className="badge-panels">
+            {/* Linux */}
+            <div className="badge-panel">
+              <div className="badge-panel-title">
+                <h3>Linux Roadmap</h3>
+                <p>以系統管理＋資安視角為主</p>
+              </div>
+
+              <div className="badge-row">
+                {achievements.linux.map((b) => (
+                  <div key={b.label} className="badge-svg-item">
+                    <BadgeSvg
+                      status={b.status}
+                      title="Linux Roadmap"
+                      subtitle="System + Security"
+                      size={160}
+                      showLock={true}
+                    />
+                    <div className="badge-svg-caption">{b.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* picoCTF */}
+            <div className="badge-panel">
+              <div className="badge-panel-title">
+                <h3>picoCTF Progress</h3>
+                <p>以題型分類累積解題思路</p>
+              </div>
+
+              <div className="badge-row">
+                {achievements.ctf.map((b) => (
+                  <div key={b.label} className="badge-svg-item">
+                    <BadgeSvg
+                      status={b.status}
+                      title="picoCTF"
+                      subtitle="Writeups + Thinking"
+                      size={160}
+                      showLock={false}
+                    />
+                    <div className="badge-svg-caption">{b.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tooling */}
+            <div className="badge-panel">
+              <div className="badge-panel-title">
+                <h3>Tooling</h3>
+                <p>日常使用與熟悉度</p>
+              </div>
+
+              <div className="badge-row">
+                {achievements.tools.map((b) => (
+                  <div key={b.label} className="badge-svg-item">
+                    <BadgeSvg
+                      status={b.status}
+                      title="Tooling"
+                      subtitle="Daily Practice"
+                      size={160}
+                      showLock={false}
+                    />
+                    <div className="badge-svg-caption">{b.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* ===== Contact ===== */}
-        <section
-          id="contact"
-          className="section-card contact-section"
-        >
-          <h2>一起做點有趣的東西？</h2>
-          <a
-            className="btn"
-            href="mailto:bryanhuang710910@gmail.com"
-          >
-            寄信給我
-          </a>
+        <section id="contact" className="section-card contact-section">
+          <div className="contact-text">
+            <h2>一起做點有趣的東西？</h2>
+            <p className="section-desc">
+              如果你對 Linux / CTF / 學習交流有興趣，歡迎寄信給我一起討論。
+            </p>
+          </div>
+          <div className="contact-actions">
+            <a className="btn" href="mailto:bryanhuang710910@gmail.com">
+              寄信給我
+            </a>
+            <a className="ghost btn" href="#projects">
+              回到學習主舞台
+            </a>
+          </div>
         </section>
       </main>
 
       {/* ===== Modals ===== */}
-      <PicoCTFModal
-        isOpen={showPicoPage}
-        onClose={() => setShowPicoPage(false)}
-      />
-      <LinuxNotesModal
-        isOpen={showLinuxNotes}
-        onClose={() => setShowLinuxNotes(false)}
-      />
+      <PicoCTFModal isOpen={showPicoPage} onClose={() => setShowPicoPage(false)} />
+      <LinuxNotesModal isOpen={showLinuxNotes} onClose={() => setShowLinuxNotes(false)} />
     </>
   );
 }

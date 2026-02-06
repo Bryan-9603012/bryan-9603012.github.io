@@ -137,7 +137,7 @@
   box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
   overflow: hidden;
   position: relative;
-  font-family: 'Courier New', 'Consolas', monospace;
+  font-family: "Courier New", "Consolas", monospace;
 }
 
 /* 輪播動畫 */
@@ -210,16 +210,16 @@
   font-weight: 500;
 }
 
-.port.open { 
-  background: rgba(0,255,65,0.2); 
-  color: #00ff41; 
+.port.open {
+  background: rgba(0,255,65,0.2);
+  color: #00ff41;
   box-shadow: 0 0 8px rgba(0,255,65,0.4);
 }
 
-.port.closed { 
-  background: rgba(255,68,68,0.2); 
-  color: #ff4444; 
-  animation: blink 1s infinite; 
+.port.closed {
+  background: rgba(255,68,68,0.2);
+  color: #ff4444;
+  animation: blink 1s infinite;
 }
 
 @keyframes blink { 50% { opacity: 0.4; } }
@@ -276,9 +276,7 @@
 }
 
 /* Skills 標籤樣式 */
-.skills-showcase {
-  max-width: 100%;
-}
+.skills-showcase { max-width: 100%; }
 
 .skill-tag {
   backdrop-filter: blur(10px);
@@ -292,13 +290,8 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-.skill-tag.blue:hover {
-  box-shadow: 0 4px 12px rgba(59,130,246,0.4);
-}
-
-.skill-tag.red:hover {
-  box-shadow: 0 4px 12px rgba(239,68,68,0.4);
-}
+.skill-tag.blue:hover { box-shadow: 0 4px 12px rgba(59,130,246,0.4); }
+.skill-tag.red:hover { box-shadow: 0 4px 12px rgba(239,68,68,0.4); }
 
 /* Terminal 卡片 */
 .hero-card {
@@ -352,9 +345,7 @@
   line-height: 1.6;
 }
 
-.skills-row {
-  margin-top: 12px;
-}
+.skills-row { margin-top: 12px; }
 
 .proj-list {
   display: flex;
@@ -383,26 +374,137 @@
   color: var(--text-muted);
 }
 
+/* ===== Learning main stage (two columns) ===== */
+.learning-grid.two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .learning-grid.two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.learning-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mini-pill {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.7);
+  color: rgba(255, 255, 255, 0.82);
+  white-space: nowrap;
+}
+
+.learning-points {
+  margin: 10px 0 12px;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.learning-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* ===== Badge panels container ===== */
+.badge-panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.badge-panel {
+  padding: 16px 16px 18px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(51, 65, 85, 0.9);
+}
+
+.badge-panel-title h3 {
+  font-size: 14px;
+  margin: 0 0 6px;
+}
+
+.badge-panel-title p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+/* ===== Badge layout: horizontal rows (shows only existing badges) ===== */
+.badge-rows {
+  display: grid;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.badge-row {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.badge-row::-webkit-scrollbar { height: 8px; }
+
+.badge-row::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.badge-svg-item {
+  flex: 0 0 auto;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  scroll-snap-align: start;
+}
+
+.badge-svg-caption {
+  font-size: 12px;
+  color: var(--text-muted, rgba(255, 255, 255, 0.72));
+  text-align: center;
+  line-height: 1.3;
+  max-width: 160px;
+}
+
 /* RWD */
 @media (max-width: 900px) {
   .hero-section {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .services-grid,
   .learning-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
+
   .security-animations {
     height: 180px;
   }
-  
+
   .page-main {
     padding: 0 18px 32px;
   }
-  
+
   .site-header-inner {
     padding: 10px 18px;
   }
@@ -413,20 +515,20 @@
   .learning-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .hero-title {
     font-size: 24px;
   }
-  
+
   .hero-subtitle {
     font-size: 14px;
   }
-  
+
   .security-animations {
     height: 160px;
     padding: 16px;
   }
-  
+
   .anim-scan, .anim-burp, .anim-shell {
     min-width: 240px;
   }

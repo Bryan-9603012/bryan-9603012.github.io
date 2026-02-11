@@ -1,17 +1,17 @@
+import { Section, Callout, CodeBlock, SimpleTable, RiskCard } from "./_ui";
+
 export default function Permissions() {
   return (
     <div className="ln-note">
       <header className="ln-header">
         <h1>權限管理（Permissions）</h1>
         <p className="ln-subtitle">
-          權限管理決定「誰（Who）可以對什麼（What）做什麼（How）」——Linux
-          安全邊界的第一道防線。
+          權限管理決定「誰（Who）可以對什麼（What）做什麼（How）」——Linux 安全邊界的第一道防線。
         </p>
       </header>
 
       <Callout title="模組定位" tone="info">
-        權限管理決定「誰（Who）可以對什麼（What）做什麼（How）」→ 這是 Linux
-        所有安全邊界的第一道防線
+        權限管理決定「誰（Who）可以對什麼（What）做什麼（How）」→ 這是 Linux 所有安全邊界的第一道防線
       </Callout>
 
       <Section title="類型 / 工具 / 管什麼（總覽）">
@@ -35,7 +35,6 @@ export default function Permissions() {
  │││└── group
  └└└── owner`}
         />
-
         <SimpleTable
           headers={["符號", "數值", "意義"]}
           rows={[
@@ -44,7 +43,6 @@ export default function Permissions() {
             ["x", "1", "執行"],
           ]}
         />
-
         <Callout title="資安提醒：Linux 只套用「一組」權限" tone="warn">
           Linux 只會套用 owner / group / others 其中一組，不會疊加。
         </Callout>
@@ -120,7 +118,6 @@ chgrp group file`}
 setfacl -m u:user:rwx file
 setfacl -b file      # 清除 ACL`}
         />
-
         <Callout title="資安提醒：ACL 是隱性權限來源" tone="warn">
           ACL 容易造成「你以為沒權限，但其實有」或「你以為有，但被 mask 掉」的誤判。
         </Callout>
@@ -144,18 +141,6 @@ setfacl -b file      # 清除 ACL`}
         </ul>
       </Section>
 
-      <Section title="常見迷思澄清（你之前問過的那種）">
-        <ul className="ln-ul">
-          <li>❌ Hard link 不能突破 root 權限</li>
-          <li>❌ 偽裝檔名 ≠ 權限提升</li>
-          <li>❌ 單純 user compromise ≠ system compromise</li>
-        </ul>
-
-        <Callout title="真正破口通常來自" tone="danger">
-          SUID 濫用、sudo misconfig、ACL 誤設、可寫系統目錄（system path 可寫）。
-        </Callout>
-      </Section>
-
       <Section title="風險分級（High / Medium / Low）">
         <RiskCard
           level="High"
@@ -173,10 +158,7 @@ setfacl -b file      # 清除 ACL`}
             "ACL 設定錯誤造成隱性存取",
           ]}
         />
-        <RiskCard
-          level="Low"
-          items={["操作自己的 $HOME", "建立一般檔案、script"]}
-        />
+        <RiskCard level="Low" items={["操作自己的 $HOME", "建立一般檔案、script"]} />
       </Section>
 
       <Section title="對應 MITRE ATT&CK（索引）">
@@ -207,77 +189,6 @@ find / -writable -type d 2>/dev/null`}
       <footer className="ln-footer">
         <small>Last updated: Permissions module</small>
       </footer>
-    </div>
-  );
-}
-
-/* ---------- Small UI primitives (no dependencies) ---------- */
-
-function Section({ title, children }) {
-  return (
-    <section className="ln-section">
-      <h2 className="ln-h2">{title}</h2>
-      {children}
-    </section>
-  );
-}
-
-function Callout({ title, tone = "info", children }) {
-  return (
-    <div className={`ln-callout ln-${tone}`}>
-      <div className="ln-callout-title">{title}</div>
-      <div className="ln-callout-body">{children}</div>
-    </div>
-  );
-}
-
-function CodeBlock({ code }) {
-  return (
-    <pre className="ln-code">
-      <code>{code}</code>
-    </pre>
-  );
-}
-
-function SimpleTable({ headers, rows }) {
-  return (
-    <div className="ln-table-wrap">
-      <table className="ln-table">
-        <thead>
-          <tr>
-            {headers.map((h) => (
-              <th key={h}>{h}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, idx) => (
-            <tr key={idx}>
-              {r.map((cell, j) => (
-                <td key={j}>{cell}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function RiskCard({ level, items }) {
-  const tone =
-    level === "High" ? "danger" : level === "Medium" ? "warn" : "ok";
-
-  return (
-    <div className={`ln-risk ln-${tone}`}>
-      <div className="ln-risk-head">
-        <span className="ln-risk-badge">{level}</span>
-      </div>
-      <ul className="ln-ul">
-        {items.map((x) => (
-          <li key={x}>{x}</li>
-        ))}
-      </ul>
     </div>
   );
 }

@@ -1,0 +1,96 @@
+.dl-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dl-modal {
+  width: 1100px;
+  height: 80vh;
+  background: #0f172a;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(148,163,184,0.3);
+}
+
+.dl-topbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid rgba(148,163,184,0.2);
+}
+
+.dl-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.dl-sub {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.dl-body {
+  display: flex;
+  flex: 1;
+}
+
+.dl-sidebar {
+  width: 260px;
+  border-right: 1px solid rgba(148,163,184,0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dl-item {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  text-align: left;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dl-item.active {
+  color: #22d3ee;
+  font-weight: 600;
+}
+
+.dl-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.dl-doc h1 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.dl-file {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.dl-section {
+  margin-bottom: 24px;
+}
+
+.dl-section h2 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #22d3ee;
+}
+
+.dl-section-body {
+  font-size: 14px;
+  line-height: 1.7;
+}

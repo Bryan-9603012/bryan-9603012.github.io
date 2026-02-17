@@ -1,12 +1,14 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import PicoCTFModal from "./components/PicoCTFModal";
 import LinuxNotesModal from "./components/LinuxNotesModal";
+import DigitalLogicModal from "./components/DigitalLogicModal";
 import BadgeSvg from "./components/BadgeSvg";
 import "./App.css";
 
 function App() {
   const [showPicoPage, setShowPicoPage] = useState(false);
   const [showLinuxNotes, setShowLinuxNotes] = useState(false);
+  const [showDigitalLogic, setShowDigitalLogic] = useState(false);
 
   // ===== Terminal 狀態 =====
   const [terminalOutput, setTerminalOutput] = useState([
@@ -95,7 +97,10 @@ function App() {
           break;
         }
 
-        setTerminalOutput((prev) => [...prev, `cd: ${args[0]}: No such directory`]);
+        setTerminalOutput((prev) => [
+          ...prev,
+          `cd: ${args[0]}: No such directory`,
+        ]);
         break;
 
       case "pwd":
@@ -103,7 +108,10 @@ function App() {
         break;
 
       default:
-        setTerminalOutput((prev) => [...prev, `bash: ${command}: command not found`]);
+        setTerminalOutput((prev) => [
+          ...prev,
+          `bash: ${command}: command not found`,
+        ]);
     }
 
     setTerminalInput("");
@@ -176,11 +184,26 @@ function App() {
               <a href="#projects" className="btn">
                 看我的學習主舞台
               </a>
-              <button type="button" className="ghost btn" onClick={() => setShowLinuxNotes(true)}>
+              <button
+                type="button"
+                className="ghost btn"
+                onClick={() => setShowLinuxNotes(true)}
+              >
                 開啟 Linux Notes
               </button>
-              <button type="button" className="ghost btn" onClick={() => setShowPicoPage(true)}>
+              <button
+                type="button"
+                className="ghost btn"
+                onClick={() => setShowPicoPage(true)}
+              >
                 開啟 picoCTF Writeups
+              </button>
+              <button
+                type="button"
+                className="ghost btn"
+                onClick={() => setShowDigitalLogic(true)}
+              >
+                開啟 Digital Logic
               </button>
             </div>
 
@@ -277,15 +300,15 @@ function App() {
           </div>
         </section>
 
-        {/* ===== 原本 Projects 的位置：改成「學習主舞台」 ===== */}
+        {/* ===== 學習主舞台（Linux / picoCTF / DigitalLogic 並排） ===== */}
         <section id="projects" className="section-card">
           <h2>學習主舞台</h2>
           <p className="section-desc">
-            我把學習分成「系統性理解」與「實戰解題」兩條線同步前進：左邊打地基、右邊練實戰。
+            目前主力是三條線：Linux 打地基、picoCTF 練實戰、Digital Logic 展示硬體/系統整合能力。
           </p>
 
-          <div className="learning-grid two-col">
-            {/* 左：Linux Notes */}
+          <div className="learning-grid three-col">
+            {/* Linux Notes */}
             <div className="learning-item">
               <div className="learning-head">
                 <h3>Linux / CLI 筆記</h3>
@@ -300,7 +323,11 @@ function App() {
                 <li>服務管理與日誌追蹤</li>
               </ul>
               <div className="learning-actions">
-                <button type="button" className="btn" onClick={() => setShowLinuxNotes(true)}>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setShowLinuxNotes(true)}
+                >
                   開啟 Linux Notes
                 </button>
                 <a className="ghost btn" href="#learning">
@@ -309,7 +336,7 @@ function App() {
               </div>
             </div>
 
-            {/* 右：picoCTF */}
+            {/* picoCTF */}
             <div className="learning-item">
               <div className="learning-head">
                 <h3>picoCTF 解題紀錄</h3>
@@ -324,8 +351,40 @@ function App() {
                 <li>常見陷阱：編碼、權限、路徑、條件繞過</li>
               </ul>
               <div className="learning-actions">
-                <button type="button" className="btn" onClick={() => setShowPicoPage(true)}>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setShowPicoPage(true)}
+                >
                   開啟 Writeups
+                </button>
+                <a className="ghost btn" href="#learning">
+                  看成果徽章
+                </a>
+              </div>
+            </div>
+
+            {/* Digital Logic */}
+            <div className="learning-item">
+              <div className="learning-head">
+                <h3>Digital Logic</h3>
+                <span className="mini-pill">Hardware / System</span>
+              </div>
+              <p>
+                數位邏輯作品文檔整理：多位數計數與顯示整合、JK FF 時序設計、模組化組合邏輯。
+              </p>
+              <ul className="learning-points">
+                <li>多級計數器串接（Carry Propagation）</li>
+                <li>State-Based Design（JK Flip-Flop）</li>
+                <li>階層式設計（自訂 Symbol / 可重用）</li>
+              </ul>
+              <div className="learning-actions">
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setShowDigitalLogic(true)}
+                >
+                  開啟 Digital Logic
                 </button>
                 <a className="ghost btn" href="#learning">
                   看成果徽章
@@ -434,8 +493,18 @@ function App() {
       </main>
 
       {/* ===== Modals ===== */}
-      <PicoCTFModal isOpen={showPicoPage} onClose={() => setShowPicoPage(false)} />
-      <LinuxNotesModal isOpen={showLinuxNotes} onClose={() => setShowLinuxNotes(false)} />
+      <PicoCTFModal
+        isOpen={showPicoPage}
+        onClose={() => setShowPicoPage(false)}
+      />
+      <LinuxNotesModal
+        isOpen={showLinuxNotes}
+        onClose={() => setShowLinuxNotes(false)}
+      />
+      <DigitalLogicModal
+        isOpen={showDigitalLogic}
+        onClose={() => setShowDigitalLogic(false)}
+      />
     </>
   );
 }

@@ -89,3 +89,51 @@
 .lnm-empty {
   opacity: 0.9;
 }
+/* ===== ln-table：統一表格外觀（BOM 風格） ===== */
+.ln-table-wrap {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(2, 6, 23, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.35);
+}
+
+.ln-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.ln-table thead th {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 14px 14px;
+  color: rgba(226, 232, 240, 0.92);
+  background: rgba(15, 23, 42, 0.72);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.ln-table tbody td {
+  font-size: 13px;
+  padding: 14px 14px;
+  color: rgba(226, 232, 240, 0.86);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.10);
+  vertical-align: top;
+}
+
+.ln-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 讓 code 風格更像你圖中的「常用用法」欄 */
+.ln-table code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  color: rgba(226, 232, 240, 0.92);
+}

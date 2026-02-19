@@ -21,8 +21,7 @@ const problems = [
       "輸入：c",
       "繼續按 Enter 即可看到 flag",
     ],
-    note:
-      "若 nc 出現 Connection refused，代表伺服器關閉或暫停；稍後再試即可。",
+    note: "若 nc 出現 Connection refused，代表伺服器關閉或暫停；稍後再試即可。",
   },
   {
     id: "log-hunt",
@@ -63,7 +62,7 @@ const problems = [
     ],
   },
   {
-    id: "what's a net cat?",
+    id: "whats-a-net-cat",
     title: "What's a Net Cat?",
     difficulty: "easy",
     steps: [
@@ -73,7 +72,7 @@ const problems = [
     ],
   },
   {
-    id: "nice netcat...",
+    id: "nice-netcat",
     title: "Nice Netcat...",
     difficulty: "easy",
     steps: [
@@ -109,7 +108,7 @@ const problems = [
     note: "順序：base64 → base64 → rot7",
   },
   {
-    id: "flag hunter",
+    id: "flag-hunter",
     title: "Flag Hunter",
     difficulty: "easy",
     steps: ["挑戰概述：", "（你可以之後補上這題的內容）"],
@@ -146,97 +145,91 @@ const problems = [
       "步驟四：nc 連線後輸入計算出的 win address（hex 格式 0x...）",
       "取得 flag",
     ],
-    note:
-      "若出現 Segfault incorrect address：通常是位址算錯或格式不是 0x 開頭 hex。",
+    note: "若出現 Segfault incorrect address：通常是位址算錯或格式不是 0x 開頭 hex。",
   },
-];
-[
-{
-  id: "head-dump",
-  title: "Head Dump",
-  difficulty: "normal",
-  steps: 
-  [
-    "head-dump",
-    "類型：Web Exploitation",
-    "🧠 解題核心",
 
-    "這題的關鍵是：",
-
-    "找到會產生伺服器記憶體檔案的 API endpoint",
-    "下載記憶體快照",
-    "從記憶體中搜尋 flag",
-
-    "🔎 Step 1 – 找 API 文件",
-
-    "進入網站後，文章中提到 API Documentation。",
-
-    "嘗試進入：/api-docs",
-    "會看到 Swagger / OpenAPI 介面，列出所有 API。",
-
-    "🔎 Step 1 – 找 API 文件",
-
-    "進入網站後，文章中提到 API Documentation。",
-
-    "嘗試進入：/api-docs",
-    "會看到 Swagger / OpenAPI 介面，列出所有 API。",
-
-    "👉 這一步的重點是：",
-    "利用 API 文件直接列舉端點，而不是亂猜路徑。",
-
-    "🚨 Step 2 – 找可疑端點",
-
-    "在 API 文件中可以看到：",
-
-    "GET /heapdump",
-    "這個端點名稱非常可疑。",
-
-    "為什麼？",
-
-    "heap = 記憶體",
-
-    "dump = 傾印",
-
-    "通常只存在於 debug 環境，不應該公開存取",
-
-    "🧪 Step 3 – 驗證是否可下載",
-
-    "使用 curl 測試：",
-
-    "curl -I http://TARGET/heapdump",
-
-    "如果看到：",
-
-    "HTTP/1.1 200 OK",
-    "Content-Type: application/octet-stream",
-
-
-    "代表可以直接下載。",
-
-    "📥 Step 4 – 下載記憶體快照",
-    "curl http://TARGET/heapdump -o heapdump",
-
-
-    "確認下載完整：",
-
-    "ls -lh heapdump",
-
-
-    "檔案大小應約 10~12MB。",
-
-    "⚠ 如果只有幾百 KB，代表下載未完成。",
-
-    "🔍 Step 5 – 從記憶體中搜尋 flag",
-
-    "Heap snapshot 會包含所有執行時字串。",
-
-    "搜尋 picoCTF 格式：",
-
-    "strings -a heapdump | grep -oE 'picoCTF\{[^}]+\}'",
-
-    "Final Flag"
-  ],
-},
+  // ✅ head-dump：維持你原本的「分段 + emoji」格式（照你的檔案）
+  {
+    id: "head-dump",
+    title: "Head Dump",
+    difficulty: "easy",
+    steps: [
+      "head-dump",
+      "類型：Web Exploitation",
+      "🧠 解題核心",
+      "",
+      "這題的關鍵是：",
+      "",
+      "找到會產生伺服器記憶體檔案的 API endpoint",
+      "下載記憶體快照",
+      "從記憶體中搜尋 flag",
+      "",
+      "🔎 Step 1 – 找 API 文件",
+      "",
+      "進入網站後，文章中提到 API Documentation。",
+      "",
+      "嘗試進入：",
+      "",
+      "/api-docs",
+      "",
+      "會看到 Swagger / OpenAPI 介面，列出所有 API。",
+      "",
+      "👉 這一步的重點是：",
+      "利用 API 文件直接列舉端點，而不是亂猜路徑。",
+      "",
+      "🚨 Step 2 – 找可疑端點",
+      "",
+      "在 API 文件中可以看到：",
+      "",
+      "GET /heapdump",
+      "",
+      "這個端點名稱非常可疑。",
+      "",
+      "為什麼？",
+      "",
+      "heap = 記憶體",
+      "",
+      "dump = 傾印",
+      "",
+      "通常只存在於 debug 環境",
+      "",
+      "不應該公開存取",
+      "",
+      "🧪 Step 3 – 驗證是否可下載",
+      "",
+      "使用 curl 測試：",
+      "",
+      "curl -I http://TARGET/heapdump",
+      "",
+      "如果看到：",
+      "",
+      "HTTP/1.1 200 OK",
+      "Content-Type: application/octet-stream",
+      "",
+      "代表可以直接下載。",
+      "",
+      "📥 Step 4 – 下載記憶體快照",
+      "curl http://TARGET/heapdump -o heapdump",
+      "",
+      "確認下載完整：",
+      "",
+      "ls -lh heapdump",
+      "",
+      "檔案大小應約 10~12MB。",
+      "",
+      "⚠ 如果只有幾百 KB，代表下載未完成。",
+      "",
+      "🔍 Step 5 – 從記憶體中搜尋 flag",
+      "",
+      "Heap snapshot 會包含所有執行時字串。",
+      "",
+      "搜尋 picoCTF 格式：",
+      "",
+      "strings -a heapdump | grep -oE 'picoCTF\\{[^}]+\\}'",
+      "",
+      "Final Flag",
+    ],
+  },
 ];
 
 const difficultyLabels = {
@@ -254,9 +247,9 @@ const toolRows = [
 ];
 
 export default function PicoPage() {
-  const [currentDifficulty, setCurrentDifficulty] = useState("easy"); // 預設 easy
+  const [currentDifficulty, setCurrentDifficulty] = useState("easy");
   const [currentProblemId, setCurrentProblemId] = useState(null);
-  const [visibleCode, setVisibleCode] = useState(null); // for repetitions
+  const [visibleCode, setVisibleCode] = useState(null);
 
   const filteredProblems = useMemo(() => {
     return problems.filter((p) => p.difficulty === currentDifficulty);
@@ -274,7 +267,6 @@ export default function PicoPage() {
 
   return (
     <>
-      {/* ===== Sidebar (同 LinuxNotesModal 的 lnm-sidebar 節奏) ===== */}
       <aside className="lnm-sidebar">
         <div style={{ padding: "10px 10px 6px" }}>
           <div style={{ fontWeight: 800, marginBottom: "6px" }}>難度</div>
@@ -328,7 +320,6 @@ export default function PicoPage() {
         )}
       </aside>
 
-      {/* ===== Content ===== */}
       <main className="lnm-content">
         {!currentProblem && (
           <div className="ln-note">
@@ -366,14 +357,18 @@ export default function PicoPage() {
             </header>
 
             <Section title="解題步驟（Procedure）">
-              <ol className="ln-ol">
+            <ol
+              className={`ln-ol ${
+              currentProblem.id === "head-dump" ? "no-num" : ""
+              }`}
+           >
+
                 {currentProblem.steps.map((s, i) => (
                   <li key={i}>{s}</li>
                 ))}
               </ol>
             </Section>
 
-            {/* Repetitions 題目：程式碼區域改成 ln-code 風格 */}
             {currentProblem.id === "repetitions" && (
               <Section title="程式碼範例（Code Samples）">
                 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
@@ -436,7 +431,7 @@ print("Flag:", flag)`}
                 {visibleCode === "code2" && (
                   <>
                     <Callout title="用途" tone="ok">
-                      對特定的 base64 payload 反覆解碼直到失敗。
+                      對特定 base64 payload 反覆解碼直到失敗。
                     </Callout>
                     <CodeBlock
                       code={`import base64

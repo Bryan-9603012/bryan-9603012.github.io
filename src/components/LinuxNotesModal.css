@@ -137,3 +137,14 @@
   border: 1px solid rgba(148, 163, 184, 0.18);
   color: rgba(226, 232, 240, 0.92);
 }
+/* ===== Remove numbering for specific ordered lists ===== */
+.ln-ol.no-num {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.ln-ol.no-num > li {
+  padding-left: 0;
+  margin-left: 0;
+}

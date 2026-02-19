@@ -150,6 +150,94 @@ const problems = [
       "若出現 Segfault incorrect address：通常是位址算錯或格式不是 0x 開頭 hex。",
   },
 ];
+[
+{
+  id: "head-dump",
+  title: "Head Dump",
+  difficulty: "normal",
+  steps: 
+  [
+    "head-dump",
+    "類型：Web Exploitation",
+    "🧠 解題核心",
+
+    "這題的關鍵是：",
+
+    "找到會產生伺服器記憶體檔案的 API endpoint",
+    "下載記憶體快照",
+    "從記憶體中搜尋 flag",
+
+    "🔎 Step 1 – 找 API 文件",
+
+    "進入網站後，文章中提到 API Documentation。",
+
+    "嘗試進入：/api-docs",
+    "會看到 Swagger / OpenAPI 介面，列出所有 API。",
+
+    "🔎 Step 1 – 找 API 文件",
+
+    "進入網站後，文章中提到 API Documentation。",
+
+    "嘗試進入：/api-docs",
+    "會看到 Swagger / OpenAPI 介面，列出所有 API。",
+
+    "👉 這一步的重點是：",
+    "利用 API 文件直接列舉端點，而不是亂猜路徑。",
+
+    "🚨 Step 2 – 找可疑端點",
+
+    "在 API 文件中可以看到：",
+
+    "GET /heapdump",
+    "這個端點名稱非常可疑。",
+
+    "為什麼？",
+
+    "heap = 記憶體",
+
+    "dump = 傾印",
+
+    "通常只存在於 debug 環境，不應該公開存取",
+
+    "🧪 Step 3 – 驗證是否可下載",
+
+    "使用 curl 測試：",
+
+    "curl -I http://TARGET/heapdump",
+
+    "如果看到：",
+
+    "HTTP/1.1 200 OK",
+    "Content-Type: application/octet-stream",
+
+
+    "代表可以直接下載。",
+
+    "📥 Step 4 – 下載記憶體快照",
+    "curl http://TARGET/heapdump -o heapdump",
+
+
+    "確認下載完整：",
+
+    "ls -lh heapdump",
+
+
+    "檔案大小應約 10~12MB。",
+
+    "⚠ 如果只有幾百 KB，代表下載未完成。",
+
+    "🔍 Step 5 – 從記憶體中搜尋 flag",
+
+    "Heap snapshot 會包含所有執行時字串。",
+
+    "搜尋 picoCTF 格式：",
+
+    "strings -a heapdump | grep -oE 'picoCTF\{[^}]+\}'",
+
+    "Final Flag"
+  ],
+},
+];
 
 const difficultyLabels = {
   easy: "簡單",

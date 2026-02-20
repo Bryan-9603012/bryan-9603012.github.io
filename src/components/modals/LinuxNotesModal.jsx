@@ -1,17 +1,17 @@
 import { useMemo, useState } from "react";
 
-import Permissions from "./linux-notes/Permissions.jsx";
-import Users from "./linux-notes/Users.jsx";
-import Packages from "./linux-notes/Packages.jsx";
-import Services from "./linux-notes/Services.jsx";
-import Scheduling from "./linux-notes/Scheduling.jsx";
-import NetworkServices from "./linux-notes/NetworkServices.jsx";
-import WebOps from "./linux-notes/WebOps.jsx";
-import BackupRestore from "./linux-notes/BackupRestore.jsx";
-import Filesystem from "./linux-notes/Filesystem.jsx";
-import Containerization from "./linux-notes/Containerization.jsx";
-import RemoteDesktop from "./linux-notes/RemoteDesktop.jsx";
-import LinuxSecurity from "./linux-notes/LinuxSecurity.jsx";
+import Permissions from "../linux-notes/Permissions.jsx";
+import Users from "../linux-notes/Users.jsx";
+import Packages from "../linux-notes/Packages.jsx";
+import Services from "../linux-notes/Services.jsx";
+import Scheduling from "../linux-notes/Scheduling.jsx";
+import NetworkServices from "../linux-notes/NetworkServices.jsx";
+import WebOps from "../linux-notes/WebOps.jsx";
+import BackupRestore from "../linux-notes/BackupRestore.jsx";
+import Filesystem from "../linux-notes/Filesystem.jsx";
+import Containerization from "../linux-notes/Containerization.jsx";
+import RemoteDesktop from "../linux-notes/RemoteDesktop.jsx";
+import LinuxSecurity from "../linux-notes/LinuxSecurity.jsx";
 
 
 import "./LinuxNotesModal.css";

@@ -1,7 +1,7 @@
 // src/components/MainContent.jsx
-import Terminal from "../Terminal";
-import Skills from "../Skills";
-import Achievements from "../Achievements";
+import Terminal from "../sections/Terminal";
+import Skills from "../sections/Skills";
+import Achievements from "../sections/Achievements";
 
 // 從父層 App 傳進來，用來打開 picoCTF 解題 Modal
 export default function MainContent({ onOpenPico }) {

@@ -1,5 +1,5 @@
 // src/components/modals/ModalShell.jsx
-import "../LinuxNotesModal.css";
+import "./LinuxNotesModal.css";
 
 /**
  * ModalShell

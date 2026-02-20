@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import PicoCTFModal from "./components/modals/PicoCTFModal";
-import LinuxNotesModal from "./components/LinuxNotesModal";
-import DigitalLogicModal from "./components/DigitalLogicModal";
-import BadgeSvg from "./components/BadgeSvg";
+import LinuxNotesModal from "./components/modals/LinuxNotesModal";
+import DigitalLogicModal from "./components/modals/DigitalLogicModal";
+import BadgeSvg from "./components/ui/BadgeSvg";
 import "./App.css";
 
 function App() {

@@ -1,6 +1,6 @@
 // src/components/pages/pico/PicoPage.jsx
 import { useMemo, useState } from "react";
-import "../../LinuxNotesModal.css";
+import "../../modals/LinuxNotesModal.css";
 
 import { problems, toolRows, difficultyLabels } from "./pico.data";
 import { Section, Callout, CodeBlock, SimpleTable } from "../../notes-ui/NotePrimitives";

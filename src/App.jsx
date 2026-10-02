@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="site-shell">
       <aside className="sidebar">
-        <a className="brand" href="#home"><strong>Bryan Liu</strong><small>Cybersecurity · AI Security<br/>Software Engineering</small></a>
+        <a className="brand" href="#home"><span className="brand-mark">L.</span><span><strong>Bryan Liu</strong><small>Cybersecurity · AI Security<br/>Software Engineering</small></span></a>
         <nav className="side-nav">
           <a className="active" href="#home">⌂ <span>Home</span></a>
           <a href="#about">♙ <span>About</span></a>
@@ -77,14 +77,14 @@ function App() {
             <article className="card experience-card">
               <div className="experience-date">AIA · CLAUDE CODE</div>
               <div><div className="project-title"><h3>Can AI Keep a Secret?</h3><em>Demo Showcase</em></div>
-                <p>大型語言模型敏感資訊保護能力之研究。透過 Prompt Attack、洩漏等級評分與跨模型比較，評估 LLM 面對敏感資訊時的安全表現。</p>
+                <p>Research on sensitive-information protection in large language models, using prompt attacks, leak-level scoring, and cross-model comparison to evaluate security behavior.</p>
                 <div className="tags"><span>LLM Security</span><span>Prompt Attack</span><span>Security Evaluation</span></div>
               </div>
             </article>
             <article className="card experience-card">
               <div className="experience-date">AIWAVE · HACKATHON</div>
               <div><h3>Taiwan Generative AI Applications Hackathon</h3>
-                <p>參與生成式 AI 應用黑客松，以團隊形式進行限時實作、技術探索與成果展示。</p>
+                <p>Participated in a generative AI applications hackathon, working in a team through time-boxed implementation, technical exploration, and project presentation.</p>
                 <div className="tags"><span>Generative AI</span><span>Hackathon</span><span>Team Project</span></div>
               </div>
             </article>
@@ -95,8 +95,8 @@ function App() {
           <section className="section compact" id="notes">
             <div className="section-title"><h2>Technical Notes</h2><span>Built from practice</span></div>
             <div className="notes-grid">
-              <article className="card note-card"><span className="note-label">LINUX</span><h3>Linux Security Notes</h3><p>權限、使用者、服務、網路、檔案系統、容器化與 Linux Security。</p><button onClick={() => setShowLinux(true)}>Read Notes →</button></article>
-              <article className="card note-card"><span className="note-label">SYSTEMS</span><h3>Digital Logic</h3><p>數位邏輯、硬體與系統整合學習紀錄。</p><button onClick={() => setShowDigitalLogic(true)}>Read Notes →</button></article>
+              <article className="card note-card"><span className="note-label">LINUX</span><h3>Linux Security Notes</h3><p>Practical notes on permissions, users, services, networking, filesystems, containers, and Linux security.</p><button onClick={() => setShowLinux(true)}>Read Notes →</button></article>
+              <article className="card note-card"><span className="note-label">SYSTEMS</span><h3>Digital Logic</h3><p>Learning notes covering digital logic, hardware fundamentals, and system integration.</p><button onClick={() => setShowDigitalLogic(true)}>Read Notes →</button></article>
             </div>
           </section>
 

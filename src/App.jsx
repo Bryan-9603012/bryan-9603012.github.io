@@ -75,17 +75,18 @@ function App() {
           <div className="section-title"><h2>Experience & Highlights</h2><span>Selected activities</span></div>
           <div className="experience-grid">
             <article className="card experience-card">
-              <div className="experience-date">AIA · CLAUDE CODE</div>
+              <div className="experience-head"><div className="experience-brand"><strong>TAIWAN AI ACADEMY</strong><span>× Claude Code</span></div><time>2026.05.18</time></div>
               <div><div className="project-title"><h3>Can AI Keep a Secret?</h3><em>Demo Showcase</em></div>
                 <p>Research on sensitive-information protection in large language models, using prompt attacks, leak-level scoring, and cross-model comparison to evaluate security behavior.</p>
                 <div className="tags"><span>LLM Security</span><span>Prompt Attack</span><span>Security Evaluation</span></div>
               </div>
             </article>
             <article className="card experience-card">
-              <div className="experience-date">AIWAVE · HACKATHON</div>
+              <div className="experience-head"><div className="experience-brand"><strong>AIWAVE</strong><span>powered by AWS</span></div><time>Aug 1–2</time></div>
               <div><h3>Taiwan Generative AI Applications Hackathon</h3>
                 <p>Participated in a generative AI applications hackathon, working in a team through time-boxed implementation, technical exploration, and project presentation.</p>
-                <div className="tags"><span>Generative AI</span><span>Hackathon</span><span>Team Project</span></div>
+                <div className="tags"><span>Generative AI</span><span>Hackathon</span><span>AWS</span><span>Team Project</span></div>
+                <a className="experience-link" href="/assets/aws-aiwave-certificate.pdf" target="_blank" rel="noreferrer">View Certificate →</a>
               </div>
             </article>
           </div>

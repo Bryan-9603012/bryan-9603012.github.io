@@ -86,7 +86,6 @@ function App() {
               <div><h3>Taiwan Generative AI Applications Hackathon</h3>
                 <p>Participated in a generative AI applications hackathon, working in a team through time-boxed implementation, technical exploration, and project presentation.</p>
                 <div className="tags"><span>Generative AI</span><span>Hackathon</span><span>AWS</span><span>Team Project</span></div>
-                <a className="experience-link" href="/assets/aws-aiwave-certificate.pdf" target="_blank" rel="noreferrer">View Certificate →</a>
               </div>
             </article>
           </div>

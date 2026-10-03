@@ -29,6 +29,12 @@
   </defs>
 
   <rect width="1600" height="560" fill="url(#sky)"/>
+  <rect x="1180" y="0" width="14" height="424" fill="#ffffff" opacity=".72"/>
+  <rect x="1400" y="0" width="12" height="424" fill="#ffffff" opacity=".62"/>
+  <rect x="1185" y="0" width="2" height="424" fill="#91b7cf" opacity=".25"/>
+  <rect x="1404" y="0" width="2" height="424" fill="#91b7cf" opacity=".22"/>
+  <path d="M1220 10 1495 245" stroke="#ffffff" stroke-width="8" opacity=".16"/>
+  <path d="M1270 0 1548 230" stroke="#ffffff" stroke-width="3" opacity=".18"/>
   <g fill="#fff" opacity=".9" filter="url(#soft)">
     <ellipse cx="355" cy="72" rx="138" ry="28"/>
     <ellipse cx="485" cy="76" rx="90" ry="21"/>
@@ -54,8 +60,10 @@
     <rect x="968" y="310" width="68" height="114" rx="3"/>
   </g>
 
-  <rect y="424" width="1600" height="136" fill="#f8fafc"/>
+  <rect y="424" width="1600" height="136" fill="url(#desk)"/>
   <rect y="424" width="1600" height="15" fill="#d5e1e8"/>
+  <ellipse cx="950" cy="515" rx="420" ry="36" fill="#7f98aa" opacity=".10" filter="url(#soft)"/>
+  <ellipse cx="1190" cy="490" rx="230" ry="30" fill="#7f98aa" opacity=".08" filter="url(#soft)"/>
 
   <g transform="translate(720 263)" filter="url(#shadow)">
     <rect x="0" y="0" width="330" height="180" rx="12" fill="#1b2d3f"/>
@@ -72,7 +80,7 @@
     <path d="M-34 180h398l-36 20H0Z" fill="#8296a6"/>
   </g>
 
-  <g transform="translate(1068 300)" filter="url(#shadow)">
+  <g transform="translate(1068 286)" filter="url(#shadow)">
     <rect width="230" height="142" rx="10" fill="#15293a"/>
     <rect x="10" y="10" width="210" height="120" rx="6" fill="#0b2035"/>
     <text x="28" y="38" fill="#5ac4ff" font-family="monospace" font-size="13">security-lab</text>
@@ -81,7 +89,7 @@
     <text x="28" y="104" fill="#8ab7d6" font-family="monospace" font-size="11">evidence.json</text>
   </g>
 
-  <g transform="translate(535 374)">
+  <g transform="translate(520 372)" filter="url(#shadow)">
     <rect x="0" y="0" width="158" height="19" rx="4" fill="#526779"/>
     <rect x="6" y="-25" width="146" height="20" rx="4" fill="#6b7f8e"/>
     <rect x="13" y="-50" width="135" height="20" rx="4" fill="#324a5e"/>
@@ -89,23 +97,32 @@
     <text x="23" y="-11" fill="#e5edf3" font-family="Arial,sans-serif" font-size="10">AI Safety</text>
   </g>
 
-  <g transform="translate(660 392)">
+  <g transform="translate(650 390)" filter="url(#shadow)">
     <rect width="55" height="47" rx="8" fill="#f9fbfd"/>
     <path d="M55 11c22 0 22 25 0 25" fill="none" stroke="#d6dfe6" stroke-width="7"/>
     <ellipse cx="27" cy="4" rx="18" ry="4" fill="#d9e1e7"/>
   </g>
 
-  <g transform="translate(1320 325)">
+  <g transform="translate(1330 318)" filter="url(#shadow)">
     <rect x="28" y="70" width="52" height="58" rx="6" fill="#f6f9fb"/>
     <path d="M54 72c-4-37-35-45-35-45 2 29 23 43 35 45Z" fill="#65b78b"/>
     <path d="M54 72c3-40 38-54 38-54-2 33-25 51-38 54Z" fill="#4d9b71"/>
     <path d="M54 74c-25-20-48-14-48-14 15 22 36 24 48 14Z" fill="#77bd92"/>
   </g>
 
-  <g stroke="#61baff" stroke-width="2" fill="none" opacity=".46">
+  <g stroke="#61baff" stroke-width="2" fill="none" opacity=".38">
     <path d="M1080 125h110l28 26 48-45 75 56"/>
     <rect x="1125" y="82" width="54" height="34" rx="7"/>
     <path d="M1140 99h23M1255 95l19 19 34-39"/>
     <path d="M1335 82 1360 58l25 24v38h-50Z"/>
+  </g>
+  <g opacity=".22" stroke="#ffffff" stroke-width="2">
+    <path d="M720 120h150l25 25h120"/>
+    <path d="M960 148h118l18-18h92"/>
+  </g>
+  <g opacity=".12" fill="#ffffff">
+    <circle cx="780" cy="124" r="4"/>
+    <circle cx="885" cy="144" r="4"/>
+    <circle cx="1110" cy="130" r="4"/>
   </g>
 </svg>

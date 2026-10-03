@@ -1,37 +1,77 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560">
-  <rect width="900" height="560" rx="28" fill="#eef6ff"/>
-  <rect x="24" y="24" width="852" height="512" rx="22" fill="#fff" stroke="#d0dfed"/>
-  <rect x="24" y="24" width="876" height="62" rx="22" fill="#0d2848"/>
-  <circle cx="55" cy="55" r="8" fill="#60b7ff"/>
-  <rect x="78" y="48" width="135" height="14" rx="7" fill="#365777"/>
-  <rect x="48" y="112" width="180" height="396" rx="14" fill="#f5f9fd" stroke="#dce7f2"/>
-  <g fill="#7c91a6">
-    <rect x="70" y="142" width="112" height="11" rx="5"/>
-    <rect x="70" y="180" width="92" height="10" rx="5"/>
-    <rect x="70" y="218" width="120" height="10" rx="5"/>
-    <rect x="70" y="256" width="83" height="10" rx="5"/>
-    <rect x="70" y="294" width="109" height="10" rx="5"/>
-  </g>
-  <rect x="252" y="112" width="596" height="116" rx="14" fill="#f9fbfe" stroke="#dce7f2"/>
-  <rect x="278" y="138" width="192" height="18" rx="9" fill="#163859"/>
-  <rect x="278" y="172" width="425" height="10" rx="5" fill="#8ba0b5"/>
-  <rect x="278" y="194" width="330" height="9" rx="4.5" fill="#b1c0cd"/>
-  <rect x="252" y="248" width="286" height="238" rx="14" fill="#f9fbfe" stroke="#dce7f2"/>
-  <rect x="558" y="248" width="290" height="238" rx="14" fill="#f9fbfe" stroke="#dce7f2"/>
-  <rect x="278" y="274" width="124" height="14" rx="7" fill="#0b6fe8"/>
-  <rect x="584" y="274" width="148" height="14" rx="7" fill="#0b6fe8"/>
-  <g fill="#8ca2b7">
-    <rect x="278" y="313" width="220" height="9" rx="4.5"/>
-    <rect x="278" y="338" width="184" height="9" rx="4.5"/>
-    <rect x="278" y="363" width="230" height="9" rx="4.5"/>
-    <rect x="584" y="313" width="220" height="9" rx="4.5"/>
-    <rect x="584" y="338" width="180" height="9" rx="4.5"/>
-    <rect x="584" y="363" width="236" height="9" rx="4.5"/>
-  </g>
-  <g fill="#e8f2ff">
-    <rect x="278" y="410" width="68" height="24" rx="12"/>
-    <rect x="354" y="410" width="84" height="24" rx="12"/>
-    <rect x="584" y="410" width="72" height="24" rx="12"/>
-    <rect x="664" y="410" width="92" height="24" rx="12"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 660" role="img" aria-labelledby="title desc">
+<title id="title">Original picoCTF report documentation preview</title>
+<desc id="desc">A clean documentation interface with writeup categories, an article list, challenge metadata, and tool research links.</desc>
+<defs>
+  <linearGradient id="page" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f7fbff"/><stop offset="1" stop-color="#eef5fc"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="7" stdDeviation="10" flood-color="#5b7891" flood-opacity=".14"/></filter>
+</defs>
+<rect width="1080" height="660" rx="28" fill="url(#page)"/>
+<rect x="26" y="26" width="1028" height="608" rx="22" fill="#fff" stroke="#cfdfed"/>
+<rect x="26" y="26" width="1028" height="64" rx="22" fill="#0d2848"/>
+<circle cx="58" cy="58" r="7" fill="#67baff"/>
+<text x="80" y="63" fill="#edf5fb" font-family="Arial,sans-serif" font-size="15" font-weight="700">picoCTF Report</text>
+<rect x="782" y="45" width="110" height="28" rx="14" fill="#173c60"/>
+<text x="812" y="63" fill="#8acbff" font-family="Arial,sans-serif" font-size="10">INDEX.md</text>
+<rect x="904" y="45" width="118" height="28" rx="14" fill="#0a66c2"/>
+<text x="930" y="63" fill="#fff" font-family="Arial,sans-serif" font-size="10">GitHub repo</text>
+
+<rect x="48" y="112" width="204" height="494" rx="14" fill="#f6f9fd" stroke="#dce7f2"/>
+<text x="72" y="143" fill="#254666" font-family="Arial,sans-serif" font-size="11" font-weight="700">WRITEUPS</text>
+<g font-family="Arial,sans-serif" font-size="10">
+  <rect x="64" y="162" width="172" height="32" rx="8" fill="#eaf3ff"/>
+  <text x="82" y="182" fill="#0a69ee">Web Exploitation</text>
+  <text x="82" y="220" fill="#66809a">Cryptography</text>
+  <text x="82" y="256" fill="#66809a">Forensics</text>
+  <text x="82" y="292" fill="#66809a">General Skills</text>
+  <text x="82" y="328" fill="#66809a">Reverse Engineering</text>
+  <text x="82" y="364" fill="#66809a">Binary Exploitation</text>
+  <text x="82" y="400" fill="#66809a">Blockchain</text>
+</g>
+<text x="72" y="454" fill="#90a2b5" font-family="Arial,sans-serif" font-size="9">TOOL RESEARCH</text>
+<text x="82" y="482" fill="#66809a" font-family="Arial,sans-serif" font-size="10">Hunter-2</text>
+<text x="82" y="510" fill="#66809a" font-family="Arial,sans-serif" font-size="10">ArtifactScope</text>
+<text x="82" y="538" fill="#66809a" font-family="Arial,sans-serif" font-size="10">Decode Helper</text>
+
+<rect x="274" y="112" width="756" height="124" rx="14" fill="#fbfdff" stroke="#dce7f2" filter="url(#shadow)"/>
+<text x="302" y="145" fill="#163859" font-family="Arial,sans-serif" font-size="18" font-weight="700">picoCTF Writeups</text>
+<text x="302" y="170" fill="#6f849a" font-family="Arial,sans-serif" font-size="10">Challenge notes, source files, solving artifacts, and reusable research.</text>
+<rect x="302" y="194" width="74" height="22" rx="11" fill="#e8f2ff"/>
+<text x="321" y="209" fill="#0a69ee" font-family="Arial,sans-serif" font-size="8">7 categories</text>
+<rect x="384" y="194" width="86" height="22" rx="11" fill="#eef6f3"/>
+<text x="403" y="209" fill="#318363" font-family="Arial,sans-serif" font-size="8">GitHub-ready</text>
+
+<rect x="274" y="254" width="475" height="332" rx="14" fill="#fbfdff" stroke="#dce7f2"/>
+<text x="300" y="286" fill="#234563" font-family="Arial,sans-serif" font-size="12" font-weight="700">Recent writeups</text>
+
+<g font-family="Arial,sans-serif">
+  <rect x="298" y="308" width="427" height="64" rx="10" fill="#fff" stroke="#e0e9f2"/>
+  <rect x="312" y="322" width="60" height="20" rx="10" fill="#eaf3ff"/>
+  <text x="329" y="336" fill="#0a69ee" font-size="8">WEB</text>
+  <text x="386" y="337" fill="#1a3b59" font-size="10" font-weight="700">Challenge writeup</text>
+  <text x="386" y="354" fill="#8295a8" font-size="8">method · notes · evidence</text>
+
+  <rect x="298" y="386" width="427" height="64" rx="10" fill="#fff" stroke="#e0e9f2"/>
+  <rect x="312" y="400" width="72" height="20" rx="10" fill="#f2efff"/>
+  <text x="326" y="414" fill="#6c55d9" font-size="8">CRYPTO</text>
+  <text x="398" y="415" fill="#1a3b59" font-size="10" font-weight="700">Decoding notes</text>
+  <text x="398" y="432" fill="#8295a8" font-size="8">steps · artifacts · references</text>
+
+  <rect x="298" y="464" width="427" height="64" rx="10" fill="#fff" stroke="#e0e9f2"/>
+  <rect x="312" y="478" width="82" height="20" rx="10" fill="#eef7f3"/>
+  <text x="328" y="492" fill="#338665" font-size="8">FORENSICS</text>
+  <text x="408" y="493" fill="#1a3b59" font-size="10" font-weight="700">Artifact analysis</text>
+  <text x="408" y="510" fill="#8295a8" font-size="8">files · strings · filesystem clues</text>
+</g>
+
+<rect x="768" y="254" width="262" height="332" rx="14" fill="#fbfdff" stroke="#dce7f2"/>
+<text x="794" y="286" fill="#234563" font-family="Arial,sans-serif" font-size="12" font-weight="700">Repository structure</text>
+<g font-family="monospace" font-size="9">
+  <text x="794" y="326" fill="#0a69ee">writeups/</text>
+  <text x="814" y="350" fill="#6e8296">web-exploitation/</text>
+  <text x="814" y="374" fill="#6e8296">cryptography/</text>
+  <text x="814" y="398" fill="#6e8296">forensics/</text>
+  <text x="794" y="438" fill="#0a69ee">tool-research/</text>
+  <text x="794" y="478" fill="#0a69ee">scripts/</text>
+  <text x="794" y="518" fill="#0a69ee">templates/</text>
+</g>
 </svg>

@@ -3,27 +3,28 @@ import "./App.css";
 import LinuxNotesModal from "./components/modals/LinuxNotesModal";
 import DigitalLogicModal from "./components/modals/DigitalLogicModal";
 import CertificateModal from "./components/modals/CertificateModal";
+import Icon from "./components/ui/Icon";
 
 const focusAreas = [
-  ["◇", "Cybersecurity", "Security research, CTF, Linux, and practical tooling."],
-  ["▦", "AI Security", "LLM security, safety evaluation, and adversarial testing."],
-  ["</>", "Software Engineering", "Building maintainable tools and web applications."],
-  ["▤", "Continuous Learning", "Notes, writeups, and sharing what I learn."],
+  ["shield", "Cybersecurity", "Security research, CTF, Linux, and practical tooling."],
+  ["cpu", "AI Security", "LLM security, safety evaluation, and adversarial testing."],
+  ["code", "Software Engineering", "Building maintainable tools and web applications."],
+  ["book", "Continuous Learning", "Notes, writeups, and sharing what I learn."],
 ];
 
 const skills = [
-  ["Py", "Python"],
-  ["JS", "JavaScript"],
-  ["LX", "Linux / WSL"],
-  ["WEB", "Web Development"],
-  ["SEC", "Security"],
-  ["Git", "Git / GitHub"],
-  ["RE", "React"],
-  ["CLI", "CLI Tooling"],
-  ["AUT", "Security Automation"],
-  ["NET", "Networking"],
-  ["CTF", "CTF"],
-  ["LLM", "LLM Security"],
+  ["python", "Python", "python"],
+  ["javascript", "JavaScript", "javascript"],
+  ["terminal", "Linux / WSL", "linux"],
+  ["globe", "Web Development", "web"],
+  ["shield", "Security", "security"],
+  ["git", "Git / GitHub", "git"],
+  ["atom", "React", "react"],
+  ["terminal", "CLI Tooling", "cli"],
+  ["workflow", "Security Automation", "automation"],
+  ["network", "Networking", "network"],
+  ["flag", "CTF", "ctf"],
+  ["bot", "LLM Security", "llm"],
 ];
 
 function App() {
@@ -43,13 +44,13 @@ function App() {
         </a>
 
         <nav className="side-nav" aria-label="Primary navigation">
-          <a className="active" href="#home"><b>⌂</b><span>Home</span></a>
-          <a href="#about"><b>♙</b><span>About</span></a>
-          <a href="#work"><b>◇</b><span>Work</span></a>
-          <a href="#experience"><b>♜</b><span>Experience</span></a>
-          <a href="#notes"><b>▤</b><span>Notes</span></a>
-          <a href="#skills"><b>⌘</b><span>Skills</span></a>
-          <a href="#contact"><b>✉</b><span>Contact</span></a>
+          <a className="active" href="#home"><Icon name="home" /><span>Home</span></a>
+          <a href="#about"><Icon name="user" /><span>About</span></a>
+          <a href="#work"><Icon name="briefcase" /><span>Work</span></a>
+          <a href="#experience"><Icon name="trophy" /><span>Experience</span></a>
+          <a href="#notes"><Icon name="notes" /><span>Notes</span></a>
+          <a href="#skills"><Icon name="blocks" /><span>Skills</span></a>
+          <a href="#contact"><Icon name="mail" /><span>Contact</span></a>
         </nav>
 
         <div className="sidebar-quote" aria-hidden="true">
@@ -60,7 +61,11 @@ function App() {
         </div>
 
         <div className="sidebar-foot">
-          <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a className="github-link" href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer">
+            <Icon name="github" size={15} />
+            <span>GitHub</span>
+            <Icon name="arrow" size={11} />
+          </a>
           <span>Based in Taiwan</span>
           <span>© Bryan Liu</span>
         </div>
@@ -78,7 +83,7 @@ function App() {
               and exploring the security of modern AI systems.
             </p>
             <div className="actions">
-              <a className="button primary" href="#work">View My Work →</a>
+              <a className="button primary" href="#work">View My Work <Icon name="arrow" size={14} /></a>
               <a className="button secondary" href="#about">About Me</a>
             </div>
           </div>
@@ -95,7 +100,7 @@ function App() {
         <section className="focus-strip" aria-label="Focus areas">
           {focusAreas.map(([icon, title, body]) => (
             <article className="focus-card" key={title}>
-              <span className="focus-icon">{icon}</span>
+              <span className="focus-icon"><Icon name={icon} size={23} /></span>
               <div><strong>{title}</strong><p>{body}</p></div>
             </article>
           ))}
@@ -130,7 +135,7 @@ function App() {
                   <div>
                     <strong>AIWave Hackathon</strong>
                     <span>Participant · 2026.08.01–08.02</span>
-                    <button onClick={() => setShowCertificate(true)}>Certificate →</button>
+                    <button onClick={() => setShowCertificate(true)}>Certificate <Icon name="arrow" size={10} /></button>
                   </div>
                 </div>
               </div>
@@ -145,7 +150,7 @@ function App() {
           <section className="panel work-panel" id="work">
             <div className="panel-heading">
               <h2>Selected Work</h2>
-              <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer">View All →</a>
+              <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer">View All <Icon name="arrow" size={11} /></a>
             </div>
 
             <article className="featured-work">
@@ -156,13 +161,15 @@ function App() {
                 <div className="work-title-row"><h3>picoCTF Modular Toolkit</h3><em>Public</em></div>
                 <p>A collection of semi-automated tools for picoCTF, including security analysis and helper utilities.</p>
                 <div className="tags"><span>CTF</span><span>Python</span><span>CLI</span><span>Automation</span></div>
-                <a href="https://github.com/Bryan-9603012/picoctf-toolkit" target="_blank" rel="noreferrer">View on GitHub →</a>
+                <a href="https://github.com/Bryan-9603012/picoctf-toolkit" target="_blank" rel="noreferrer">
+                  <Icon name="github" size={13} /> View on GitHub <Icon name="arrow" size={10} />
+                </a>
               </div>
             </article>
 
             <a className="secondary-work" href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">
               <span><b>picoCTF-report</b><small>Writeups, learning notes, and tool research.</small></span>
-              <strong>Open →</strong>
+              <strong>Open <Icon name="arrow" size={10} /></strong>
             </a>
           </section>
         </div>
@@ -176,7 +183,7 @@ function App() {
           <div className="experience-list">
             <article className="experience-item">
               <div className="experience-brand experience-aia">
-                <span className="experience-logo">AI</span>
+                <span className="experience-logo"><Icon name="sparkles" size={18} /></span>
                 <div>
                   <strong>Taiwan AI Academy × Claude Code</strong>
                   <small>Demo Showcase · Proposal Selected</small>
@@ -199,7 +206,7 @@ function App() {
 
             <article className="experience-item">
               <div className="experience-brand experience-aiwave">
-                <span className="experience-logo">AI</span>
+                <span className="experience-logo"><Icon name="waves" size={18} /></span>
                 <div>
                   <strong>AIWave · Taiwan Generative AI Applications Hackathon</strong>
                   <small>AWS Taiwan × DIGITIMES</small>
@@ -219,7 +226,7 @@ function App() {
                     <span>AWS</span>
                     <span>Team Project</span>
                   </div>
-                  <button onClick={() => setShowCertificate(true)}>View Certificate →</button>
+                  <button onClick={() => setShowCertificate(true)}>View Certificate <Icon name="arrow" size={10} /></button>
                 </div>
               </div>
             </article>
@@ -238,21 +245,21 @@ function App() {
                 <div><span className="note-label">CTF</span></div>
                 <h3>picoCTF Writeups</h3>
                 <p>Challenge writeups covering web, crypto, forensics, binary exploitation, and more.</p>
-                <a href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">Read More →</a>
+                <a href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">Read More <Icon name="arrow" size={10} /></a>
               </article>
 
               <article className="note-card">
                 <div><span className="note-label">TECH</span></div>
                 <h3>Linux Security Notes</h3>
                 <p>Permissions, users, services, networking, filesystems, containers, and security practice.</p>
-                <button onClick={() => setShowLinux(true)}>Read More →</button>
+                <button onClick={() => setShowLinux(true)}>Read More <Icon name="arrow" size={10} /></button>
               </article>
 
               <article className="note-card">
                 <div><span className="note-label">SYSTEMS</span></div>
                 <h3>Digital Logic Notes</h3>
                 <p>Digital logic, hardware fundamentals, and system-integration learning records.</p>
-                <button onClick={() => setShowDigitalLogic(true)}>Read More →</button>
+                <button onClick={() => setShowDigitalLogic(true)}>Read More <Icon name="arrow" size={10} /></button>
               </article>
             </div>
           </section>
@@ -263,8 +270,11 @@ function App() {
               <span>Tools &amp; technologies</span>
             </div>
             <div className="skills-grid">
-              {skills.map(([icon, label]) => (
-                <span key={label}><b>{icon}</b>{label}</span>
+              {skills.map(([icon, label, accent]) => (
+                <span className={`skill-chip skill-${accent}`} key={label}>
+                  <i><Icon name={icon} size={15} /></i>
+                  {label}
+                </span>
               ))}
             </div>
           </section>
@@ -272,15 +282,15 @@ function App() {
 
         <section className="contact-panel" id="contact">
           <div className="contact-copy">
-            <span className="contact-icon">↗</span>
+            <span className="contact-icon"><Icon name="mail" size={16} /></span>
             <div>
               <h2>Get In Touch</h2>
               <p>Want to discuss security tooling, AI security, or practical engineering work?</p>
             </div>
           </div>
           <div className="contact-actions">
-            <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">picoCTF Notes</a>
+            <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer"><Icon name="github" size={14} /> GitHub</a>
+            <a href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer"><Icon name="notes" size={14} /> picoCTF Notes</a>
           </div>
           <div className="contact-skyline" aria-hidden="true">╱╲＿╱╲＿＿╱╲＿││＿╱╲</div>
         </section>

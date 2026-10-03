@@ -126,6 +126,21 @@ function App() {
                   Currently, I'm focusing on LLM security and AI safety evaluation while
                   continuing to improve my web development and system-security skills.
                 </p>
+
+                <div className="about-principles" aria-label="How I work">
+                  <div>
+                    <Icon name="briefcase" size={15} />
+                    <span><strong>Practical Tooling</strong><small>Build modular security tools with clear output and repeatable workflows.</small></span>
+                  </div>
+                  <div>
+                    <Icon name="cpu" size={15} />
+                    <span><strong>AI Security</strong><small>Evaluate model behavior with evidence instead of relying on impressions.</small></span>
+                  </div>
+                  <div>
+                    <Icon name="notes" size={15} />
+                    <span><strong>Documentation</strong><small>Turn hands-on practice into reusable notes, reports, and research records.</small></span>
+                  </div>
+                </div>
               </div>
 
               <div className="about-visual" aria-label="Original engineering workspace illustration" />

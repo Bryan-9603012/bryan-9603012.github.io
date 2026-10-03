@@ -126,18 +126,6 @@ function App() {
                   Currently, I'm focusing on LLM security and AI safety evaluation while
                   continuing to improve my web development and system-security skills.
                 </p>
-
-                <div className="highlight-list">
-                  <div>
-                    <strong>AIA × Claude Code</strong>
-                    <span>Demo Showcase · 2026.05.18</span>
-                  </div>
-                  <div>
-                    <strong>AIWave Hackathon</strong>
-                    <span>Participant · 2026.08.01–08.02</span>
-                    <button onClick={() => setShowCertificate(true)}>Certificate <Icon name="arrow" size={10} /></button>
-                  </div>
-                </div>
               </div>
 
               <div className="about-visual" aria-label="Original engineering workspace illustration" />
@@ -179,7 +167,7 @@ function App() {
           </div>
 
           <div className="experience-list">
-            <article className="experience-item">
+            <article className="experience-item experience-aia-card">
               <div className="experience-brand experience-aia">
                 <span className="experience-logo"><Icon name="sparkles" size={18} /></span>
                 <div>
@@ -202,7 +190,7 @@ function App() {
               </div>
             </article>
 
-            <article className="experience-item">
+            <article className="experience-item experience-aiwave-card">
               <div className="experience-brand experience-aiwave">
                 <span className="experience-logo"><Icon name="waves" size={18} /></span>
                 <div>

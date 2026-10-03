@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 560" role="img" aria-labelledby="title desc">
+  <title id="title">Original cybersecurity engineering workspace</title>
+  <desc id="desc">A bright security engineering desk with code, terminal output, network visualization, books and a generic mountain city skyline.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#78c9ff"/>
+      <stop offset=".55" stop-color="#d9efff"/>
+      <stop offset="1" stop-color="#f7fbff"/>
+    </linearGradient>
+    <linearGradient id="mount" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7da5bc"/>
+      <stop offset="1" stop-color="#c7dde8"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#08182a"/>
+      <stop offset="1" stop-color="#123b5f"/>
+    </linearGradient>
+    <linearGradient id="desk" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#d9e5ed"/>
+      <stop offset=".45" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#becdd8"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="13" stdDeviation="15" flood-color="#244461" flood-opacity=".22"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="560" fill="url(#sky)"/>
+  <g fill="#fff" opacity=".9" filter="url(#soft)">
+    <ellipse cx="355" cy="72" rx="138" ry="28"/>
+    <ellipse cx="485" cy="76" rx="90" ry="21"/>
+    <ellipse cx="1130" cy="62" rx="130" ry="26"/>
+  </g>
+
+  <path d="M0 308 160 215 305 284 470 190 646 296 825 206 1010 300 1180 220 1380 290 1600 208V390H0Z" fill="#b7d5e4" opacity=".58"/>
+  <path d="M0 355 190 276 360 344 540 254 720 356 900 270 1080 354 1260 262 1440 346 1600 298V420H0Z" fill="url(#mount)" opacity=".88"/>
+
+  <g fill="#769cb4" opacity=".8">
+    <rect x="70" y="334" width="58" height="90" rx="3"/>
+    <rect x="142" y="314" width="72" height="110" rx="3"/>
+    <rect x="230" y="348" width="44" height="76" rx="3"/>
+    <rect x="288" y="304" width="61" height="120" rx="3"/>
+    <rect x="365" y="328" width="72" height="96" rx="3"/>
+    <rect x="452" y="292" width="52" height="132" rx="3"/>
+    <rect x="520" y="325" width="72" height="99" rx="3"/>
+    <rect x="606" y="344" width="48" height="80" rx="3"/>
+    <rect x="668" y="315" width="70" height="109" rx="3"/>
+    <rect x="754" y="338" width="44" height="86" rx="3"/>
+    <rect x="812" y="300" width="79" height="124" rx="3"/>
+    <rect x="908" y="334" width="48" height="90" rx="3"/>
+    <rect x="968" y="310" width="68" height="114" rx="3"/>
+  </g>
+
+  <rect y="424" width="1600" height="136" fill="#f8fafc"/>
+  <rect y="424" width="1600" height="15" fill="#d5e1e8"/>
+
+  <g transform="translate(720 263)" filter="url(#shadow)">
+    <rect x="0" y="0" width="330" height="180" rx="12" fill="#1b2d3f"/>
+    <rect x="12" y="12" width="306" height="155" rx="7" fill="url(#screen)"/>
+    <rect x="28" y="28" width="86" height="7" rx="3.5" fill="#4fc0ff"/>
+    <rect x="28" y="50" width="132" height="6" rx="3" fill="#436e8d"/>
+    <rect x="28" y="70" width="96" height="6" rx="3" fill="#5b90b1"/>
+    <rect x="28" y="90" width="156" height="6" rx="3" fill="#42799f"/>
+    <rect x="28" y="110" width="118" height="6" rx="3" fill="#5f93b3"/>
+    <rect x="205" y="30" width="82" height="82" rx="8" fill="#0b2844" stroke="#2d668f"/>
+    <circle cx="246" cy="70" r="25" fill="none" stroke="#4fbaff" stroke-width="3" opacity=".85"/>
+    <path d="M219 70h54M246 43v54M228 53c13 10 23 27 35 36M265 53c-12 10-23 27-35 36" stroke="#4fbaff" stroke-width="2" opacity=".65"/>
+    <rect x="205" y="125" width="90" height="6" rx="3" fill="#345f7e"/>
+    <path d="M-34 180h398l-36 20H0Z" fill="#8296a6"/>
+  </g>
+
+  <g transform="translate(1068 300)" filter="url(#shadow)">
+    <rect width="230" height="142" rx="10" fill="#15293a"/>
+    <rect x="10" y="10" width="210" height="120" rx="6" fill="#0b2035"/>
+    <text x="28" y="38" fill="#5ac4ff" font-family="monospace" font-size="13">security-lab</text>
+    <text x="28" y="62" fill="#8ab7d6" font-family="monospace" font-size="11">$ scan --mode safe</text>
+    <text x="28" y="83" fill="#65d9a0" font-family="monospace" font-size="11">✓ report generated</text>
+    <text x="28" y="104" fill="#8ab7d6" font-family="monospace" font-size="11">evidence.json</text>
+  </g>
+
+  <g transform="translate(535 374)">
+    <rect x="0" y="0" width="158" height="19" rx="4" fill="#526779"/>
+    <rect x="6" y="-25" width="146" height="20" rx="4" fill="#6b7f8e"/>
+    <rect x="13" y="-50" width="135" height="20" rx="4" fill="#324a5e"/>
+    <text x="26" y="-36" fill="#dce9f1" font-family="Arial,sans-serif" font-size="10">Cyber Security</text>
+    <text x="23" y="-11" fill="#e5edf3" font-family="Arial,sans-serif" font-size="10">AI Safety</text>
+  </g>
+
+  <g transform="translate(660 392)">
+    <rect width="55" height="47" rx="8" fill="#f9fbfd"/>
+    <path d="M55 11c22 0 22 25 0 25" fill="none" stroke="#d6dfe6" stroke-width="7"/>
+    <ellipse cx="27" cy="4" rx="18" ry="4" fill="#d9e1e7"/>
+  </g>
+
+  <g transform="translate(1320 325)">
+    <rect x="28" y="70" width="52" height="58" rx="6" fill="#f6f9fb"/>
+    <path d="M54 72c-4-37-35-45-35-45 2 29 23 43 35 45Z" fill="#65b78b"/>
+    <path d="M54 72c3-40 38-54 38-54-2 33-25 51-38 54Z" fill="#4d9b71"/>
+    <path d="M54 74c-25-20-48-14-48-14 15 22 36 24 48 14Z" fill="#77bd92"/>
+  </g>
+
+  <g stroke="#61baff" stroke-width="2" fill="none" opacity=".46">
+    <path d="M1080 125h110l28 26 48-45 75 56"/>
+    <rect x="1125" y="82" width="54" height="34" rx="7"/>
+    <path d="M1140 99h23M1255 95l19 19 34-39"/>
+    <path d="M1335 82 1360 58l25 24v38h-50Z"/>
+  </g>
+</svg>

@@ -5,13 +5,6 @@ import DigitalLogicModal from "./components/modals/DigitalLogicModal";
 import CertificateModal from "./components/modals/CertificateModal";
 import Icon from "./components/ui/Icon";
 
-const focusAreas = [
-  ["shield", "Cybersecurity", "Security research, CTF, Linux, and practical tooling."],
-  ["cpu", "AI Security", "LLM security, safety evaluation, and adversarial testing."],
-  ["code", "Software Engineering", "Building maintainable tools and web applications."],
-  ["book", "Continuous Learning", "Notes, writeups, and sharing what I learn."],
-];
-
 const skills = [
   ["python", "Python", "python"],
   ["javascript", "JavaScript", "javascript"],
@@ -27,6 +20,12 @@ const skills = [
   ["bot", "LLM Security", "llm"],
 ];
 
+const aboutFocus = [
+  ["cpu", "AI / LLM Security", "專注於 LLM 安全、AI 安全評估與攻擊行為研究，強調可重現的測試方法與證據。"],
+  ["briefcase", "Practical Security Tooling", "將資安需求實作成模組化工具，讓測試流程、結果與報告更容易重複與驗證。"],
+  ["notes", "Knowledge & Documentation", "把實作、解題與研究過程整理成技術筆記、Writeups 與可持續維護的文件。"],
+];
+
 function App() {
   const [showLinux, setShowLinux] = useState(false);
   const [showDigitalLogic, setShowDigitalLogic] = useState(false);
@@ -34,57 +33,42 @@ function App() {
 
   return (
     <div className="site-shell">
-      <aside className="sidebar">
-        <a className="brand" href="#home" aria-label="Bryan Liu home">
-          <span className="brand-symbol" aria-hidden="true">L</span>
-          <span className="brand-copy">
-            <strong>Bryan Liu</strong>
-            <small>Student · Cyber &amp; Web Dev</small>
-          </span>
+      <header className="topbar">
+        <a className="top-brand" href="#home" aria-label="Bryan Liu home">
+          <span className="top-brand-mark">L.</span>
+          <strong>Bryan Liu</strong>
         </a>
 
-        <nav className="side-nav" aria-label="Primary navigation">
-          <a className="active" href="#home"><Icon name="home" /><span>Home</span></a>
-          <a href="#about"><Icon name="user" /><span>About</span></a>
-          <a href="#work"><Icon name="briefcase" /><span>Work</span></a>
-          <a href="#experience"><Icon name="trophy" /><span>Experience</span></a>
-          <a href="#notes"><Icon name="notes" /><span>Notes</span></a>
-          <a href="#skills"><Icon name="blocks" /><span>Skills</span></a>
-          <a href="#contact"><Icon name="mail" /><span>Contact</span></a>
+        <nav className="top-nav" aria-label="Primary navigation">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#experience">Experience</a>
+          <a href="#notes">Notes</a>
+          <a href="#skills">Skills</a>
         </nav>
 
-        <div className="sidebar-quote" aria-hidden="true">
-          <i />
-          <span>Better Tools</span>
-          <span>Safer Systems</span>
-          <span>A More Open Internet</span>
-        </div>
-
-        <div className="sidebar-foot">
-          <a className="github-link" href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer">
-            <Icon name="github" size={15} />
-            <span>GitHub</span>
-            <Icon name="arrow" size={11} />
+        <div className="top-actions">
+          <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <Icon name="github" size={17} />
           </a>
-          <span>Based in Taiwan</span>
-          <span>© Bryan Liu</span>
+          <a className="top-contact" href="#contact">Get In Touch →</a>
         </div>
-      </aside>
+      </header>
 
-      <main className="content">
+      <main className="page">
         <section className="hero" id="home">
           <div className="hero-bg" aria-hidden="true" />
           <div className="hero-copy">
-            <p className="hero-kicker">Hi, I'm</p>
-            <h1>Bryan <span>Liu</span></h1>
-            <p className="hero-role">Cybersecurity · AI Security · Software Engineering</p>
+            <p className="hero-kicker">STUDENT · CYBERSECURITY · AI SECURITY · SOFTWARE ENGINEERING</p>
+            <h1>你好，我是 <span>劉興源。</span></h1>
             <p className="hero-lead">
-              Building practical security tools<br />
-              and exploring the security of modern AI systems.
+              一名專注於資安、AI 安全與實用工具開發的資訊工程學生，<br />
+              喜歡透過實作工具與系統化研究來探索更安全的 AI 與網路世界。
             </p>
             <div className="actions">
-              <a className="button primary" href="#work">View My Work <Icon name="arrow" size={14} /></a>
-              <a className="button secondary" href="#about">About Me</a>
+              <a className="button primary" href="#work">查看我的作品 <Icon name="arrow" size={14} /></a>
+              <a className="button secondary" href="#about">關於我</a>
             </div>
           </div>
 
@@ -97,177 +81,157 @@ function App() {
           </div>
         </section>
 
-        <section className="focus-strip" aria-label="Focus areas">
-          {focusAreas.map(([icon, title, body]) => (
-            <article className="focus-card" key={title}>
-              <span className="focus-icon"><Icon name={icon} size={23} /></span>
-              <div><strong>{title}</strong><p>{body}</p></div>
-            </article>
-          ))}
+        <section className="panel about-panel" id="about">
+          <div className="about-copy">
+            <div className="section-heading">
+              <h2>關於我</h2>
+            </div>
+            <p>
+              我是一名資訊工程系的學生，主要關注資安、AI 安全與實用軟體開發。
+            </p>
+            <p>
+              我喜歡把資安問題轉化為實作工具，從 CTF、系統操作、工具開發到
+              LLM 安全評估，並透過整理筆記與 Writeup 記錄自己的學習與研究過程。
+            </p>
+            <p>
+              目前專注於 LLM Security、AI Safety Evaluation、picoCTF 工具開發與
+              技術筆記整理，希望透過開源專案與研究，讓更多人能以更安全、更可驗證的方式使用 AI 與網路技術。
+            </p>
+          </div>
+
+          <div className="about-focus">
+            {aboutFocus.map(([icon, title, body], index) => (
+              <article className="about-focus-card" key={title}>
+                <span className="about-focus-icon"><Icon name={icon} size={21} /></span>
+                <div>
+                  <strong>{title}</strong>
+                  <p>{body}</p>
+                </div>
+                <em>{String(index + 1).padStart(2, "0")}</em>
+              </article>
+            ))}
+          </div>
         </section>
 
-        <div className="dashboard-grid primary-grid">
-          <section className="panel about-panel" id="about">
-            <div className="panel-heading">
-              <h2>About Me</h2>
-              <span>Current focus</span>
+        <div className="content-grid main-grid">
+          <section className="panel work-panel" id="work">
+            <div className="section-heading section-heading-row">
+              <h2>精選專案</h2>
+              <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer">查看全部 →</a>
             </div>
-            <div className="about-body">
-              <div className="about-copy">
-                <p>
-                  I'm a computer science and information engineering student focused on
-                  cybersecurity, AI security, and practical software development.
-                </p>
-                <p>
-                  I build Python-based security tooling, document hands-on security practice,
-                  and prefer reproducible workflows that make results easier to verify.
-                </p>
-                <p>
-                  Currently, I'm focusing on LLM security and AI safety evaluation while
-                  continuing to improve my web development and system-security skills.
-                </p>
 
-                <div className="about-principles" aria-label="How I work">
-                  <div>
-                    <Icon name="briefcase" size={15} />
-                    <span><strong>Practical Tooling</strong><small>Build modular security tools with clear output and repeatable workflows.</small></span>
-                  </div>
-                  <div>
-                    <Icon name="cpu" size={15} />
-                    <span><strong>AI Security</strong><small>Evaluate model behavior with evidence instead of relying on impressions.</small></span>
-                  </div>
-                  <div>
-                    <Icon name="notes" size={15} />
-                    <span><strong>Documentation</strong><small>Turn hands-on practice into reusable notes, reports, and research records.</small></span>
-                  </div>
+            <div className="project-grid">
+              <article className="project-card">
+                <a className="project-image project-image-dark" href="https://github.com/Bryan-9603012/picoctf-toolkit" target="_blank" rel="noreferrer">
+                  <img src="/assets/toolkit-preview.svg" alt="picoCTF Modular Toolkit interface preview" />
+                </a>
+                <div className="project-title-row">
+                  <h3>picoCTF Modular Toolkit</h3>
+                  <em>Public</em>
                 </div>
-              </div>
+                <p>針對 picoCTF 的半自動化工具集合，包含 Web 掃描、解碼輔助、鑑識分析與二進位工具。</p>
+                <div className="tags"><span>Python</span><span>CLI</span><span>Security</span><span>Automation</span></div>
+                <a className="project-link" href="https://github.com/Bryan-9603012/picoctf-toolkit" target="_blank" rel="noreferrer">
+                  <Icon name="github" size={14} /> View on GitHub <Icon name="arrow" size={10} />
+                </a>
+              </article>
 
-              <div className="about-visual" aria-label="Original engineering workspace illustration" />
+              <article className="project-card">
+                <a className="project-image" href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">
+                  <img src="/assets/report-preview.svg" alt="picoCTF report documentation preview" />
+                </a>
+                <div className="project-title-row">
+                  <h3>picoCTF-report</h3>
+                  <em>Public</em>
+                </div>
+                <p>整理 picoCTF 各類題目的解題紀錄與學習筆記，涵蓋 Web、Crypto、Forensics、Reverse Engineering 等領域。</p>
+                <div className="tags"><span>CTF</span><span>Writeups</span><span>Security</span><span>Learning</span></div>
+                <a className="project-link" href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">
+                  <Icon name="github" size={14} /> View on GitHub <Icon name="arrow" size={10} />
+                </a>
+              </article>
             </div>
           </section>
 
-          <section className="panel work-panel" id="work">
-            <div className="panel-heading">
-              <h2>Selected Work</h2>
-              <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer">View All <Icon name="arrow" size={11} /></a>
+          <section className="panel experience-panel" id="experience">
+            <div className="section-heading section-heading-row">
+              <h2>經歷與亮點</h2>
+              <span>Selected public activities</span>
             </div>
 
-            <article className="featured-work">
-              <a className="work-preview" href="https://github.com/Bryan-9603012/picoctf-toolkit" target="_blank" rel="noreferrer">
-                <img src="/assets/toolkit-preview.svg" alt="Original visual representing the picoCTF Modular Toolkit" />
-              </a>
-              <div className="work-copy">
-                <div className="work-title-row"><h3>picoCTF Modular Toolkit</h3><em>Public</em></div>
-                <p>A collection of semi-automated tools for picoCTF, including security analysis and helper utilities.</p>
-                <div className="tags"><span>CTF</span><span>Python</span><span>CLI</span><span>Automation</span></div>
-                <a href="https://github.com/Bryan-9603012/picoctf-toolkit" target="_blank" rel="noreferrer">
-                  <Icon name="github" size={13} /> View on GitHub <Icon name="arrow" size={10} />
-                </a>
-              </div>
-            </article>
+            <div className="experience-stack">
+              <article className="experience-card">
+                <span className="experience-logo experience-logo-dark"><Icon name="sparkles" size={20} /></span>
+                <div className="experience-body">
+                  <div className="experience-meta">
+                    <div>
+                      <strong>Taiwan AI Academy × Claude Code</strong>
+                      <small>Demo Showcase · Proposal Selected</small>
+                    </div>
+                    <time>2026.05.18</time>
+                  </div>
+                  <h3>Can AI Keep a Secret?</h3>
+                  <p>以大型語言模型敏感資訊保護為主題，透過 Prompt Attack、洩漏等級評分與跨模型比較，展示 LLM 安全評估方法。</p>
+                  <div className="tags"><span>LLM Security</span><span>Prompt Attack</span><span>Security Evaluation</span></div>
+                </div>
+              </article>
 
-            <a className="secondary-work" href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">
-              <img src="/assets/report-preview.svg" alt="Original visual representing the picoCTF report collection" />
-              <span><b>picoCTF-report</b><small>Writeups, learning notes, and tool research.</small></span>
-              <strong>Open <Icon name="arrow" size={10} /></strong>
-            </a>
+              <article className="experience-card">
+                <span className="experience-logo experience-logo-blue"><Icon name="waves" size={20} /></span>
+                <div className="experience-body">
+                  <div className="experience-meta">
+                    <div>
+                      <strong>AIWave · Taiwan Generative AI Applications Hackathon</strong>
+                      <small>AWS Taiwan × DIGITIMES</small>
+                    </div>
+                    <time>Aug 1–2</time>
+                  </div>
+                  <h3>Generative AI Hackathon</h3>
+                  <p>參與生成式 AI 應用黑客松，以團隊形式進行限時實作、技術探索與成果展示。</p>
+                  <div className="experience-bottom">
+                    <div className="tags"><span>Generative AI</span><span>Hackathon</span><span>AWS</span><span>Team Project</span></div>
+                    <button onClick={() => setShowCertificate(true)}>View Certificate →</button>
+                  </div>
+                </div>
+              </article>
+            </div>
           </section>
         </div>
 
-        <section className="panel experience-panel" id="experience">
-          <div className="panel-heading">
-            <h2>Experience &amp; Highlights</h2>
-            <span>Selected public activities</span>
-          </div>
-
-          <div className="experience-list">
-            <article className="experience-item experience-aia-card">
-              <div className="experience-brand experience-aia">
-                <span className="experience-logo"><Icon name="sparkles" size={18} /></span>
-                <div>
-                  <strong>Taiwan AI Academy × Claude Code</strong>
-                  <small>Demo Showcase · Proposal Selected</small>
-                </div>
-              </div>
-              <time>2026.05.18</time>
-              <div className="experience-copy">
-                <h3>Can AI Keep a Secret?</h3>
-                <p>
-                  A public LLM security showcase project focused on sensitive-information
-                  protection, prompt attacks, leak-level scoring, and reproducible security evaluation.
-                </p>
-                <div className="tags">
-                  <span>LLM Security</span>
-                  <span>Prompt Attack</span>
-                  <span>Security Evaluation</span>
-                </div>
-              </div>
-            </article>
-
-            <article className="experience-item experience-aiwave-card">
-              <div className="experience-brand experience-aiwave">
-                <span className="experience-logo"><Icon name="waves" size={18} /></span>
-                <div>
-                  <strong>AIWave · Taiwan Generative AI Applications Hackathon</strong>
-                  <small>AWS Taiwan × DIGITIMES</small>
-                </div>
-              </div>
-              <time>2026.08.01–08.02</time>
-              <div className="experience-copy">
-                <h3>Generative AI Hackathon</h3>
-                <p>
-                  Participated in a two-day generative AI applications hackathon and received
-                  a Certificate of Achievement recognizing full participation and project work.
-                </p>
-                <div className="experience-actions">
-                  <div className="tags">
-                    <span>Generative AI</span>
-                    <span>Hackathon</span>
-                    <span>AWS</span>
-                    <span>Team Project</span>
-                  </div>
-                  <button onClick={() => setShowCertificate(true)}>View Certificate <Icon name="arrow" size={10} /></button>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <div className="dashboard-grid secondary-grid">
+        <div className="content-grid lower-grid">
           <section className="panel notes-panel" id="notes">
-            <div className="panel-heading">
-              <h2>Latest Notes</h2>
+            <div className="section-heading section-heading-row">
+              <h2>最新筆記</h2>
               <span>Built from practice</span>
             </div>
 
             <div className="notes-grid">
               <article className="note-card">
-                <div><span className="note-label">CTF</span></div>
-                <h3>picoCTF Writeups</h3>
-                <p>Challenge writeups covering web, crypto, forensics, binary exploitation, and more.</p>
-                <a href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">Read More <Icon name="arrow" size={10} /></a>
+                <span className="note-label">TECH</span>
+                <h3>Linux 學習筆記</h3>
+                <p>整理常用的 Linux 指令、權限、服務、網路與系統操作技巧。</p>
+                <button onClick={() => setShowLinux(true)}>閱讀全文 →</button>
               </article>
 
               <article className="note-card">
-                <div><span className="note-label">TECH</span></div>
-                <h3>Linux Security Notes</h3>
-                <p>Permissions, users, services, networking, filesystems, containers, and security practice.</p>
-                <button onClick={() => setShowLinux(true)}>Read More <Icon name="arrow" size={10} /></button>
+                <span className="note-label">CTF</span>
+                <h3>picoCTF 解題紀錄</h3>
+                <p>記錄 picoCTF 題目的解題思路與方法，涵蓋多個資安領域。</p>
+                <a href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">閱讀全文 →</a>
               </article>
 
               <article className="note-card">
-                <div><span className="note-label">SYSTEMS</span></div>
+                <span className="note-label">SYSTEMS</span>
                 <h3>Digital Logic Notes</h3>
-                <p>Digital logic, hardware fundamentals, and system-integration learning records.</p>
-                <button onClick={() => setShowDigitalLogic(true)}>Read More <Icon name="arrow" size={10} /></button>
+                <p>整理數位邏輯、硬體基礎與系統整合的學習內容。</p>
+                <button onClick={() => setShowDigitalLogic(true)}>閱讀全文 →</button>
               </article>
             </div>
           </section>
 
           <section className="panel skills-panel" id="skills">
-            <div className="panel-heading">
-              <h2>Skills</h2>
+            <div className="section-heading section-heading-row">
+              <h2>技能</h2>
               <span>Tools &amp; technologies</span>
             </div>
             <div className="skills-grid">
@@ -283,15 +247,15 @@ function App() {
 
         <section className="contact-panel" id="contact">
           <div className="contact-copy">
-            <span className="contact-icon"><Icon name="mail" size={16} /></span>
+            <span className="contact-icon"><Icon name="mail" size={17} /></span>
             <div>
-              <h2>Get In Touch</h2>
-              <p>Want to discuss security tooling, AI security, or practical engineering work?</p>
+              <h2>聯絡我</h2>
+              <p>如果你想交流資安工具、AI 安全、技術研究，或只是聊聊想法，都非常歡迎。</p>
             </div>
           </div>
           <div className="contact-actions">
-            <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer"><Icon name="github" size={14} /> GitHub</a>
-            <a href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer"><Icon name="notes" size={14} /> picoCTF Notes</a>
+            <a href="https://github.com/Bryan-9603012" target="_blank" rel="noreferrer"><Icon name="github" size={15} /> GitHub</a>
+            <a href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer"><Icon name="notes" size={15} /> picoCTF Notes</a>
           </div>
           <div className="contact-skyline" aria-hidden="true">╱╲＿╱╲＿＿╱╲＿││＿╱╲</div>
         </section>

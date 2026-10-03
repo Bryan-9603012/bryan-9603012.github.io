@@ -62,9 +62,9 @@ button{color:inherit}
   text-decoration:none;
   font-size:12px;
 }
-.side-nav a b{width:18px;text-align:center;color:#315272}
+.side-nav a svg{width:18px;height:18px;flex:0 0 18px;color:#315272;transition:color .16s ease}
 .side-nav a.active,.side-nav a:hover{color:var(--blue);background:#edf4ff}
-.side-nav a.active b,.side-nav a:hover b{color:var(--blue)}
+.side-nav a.active svg,.side-nav a:hover svg{color:var(--blue)}
 
 .sidebar-quote{
   margin:72px 15px 0;
@@ -84,6 +84,8 @@ button{color:inherit}
   font-size:9px;
 }
 .sidebar-foot a{color:#183b63;text-decoration:none;font-weight:800}
+.github-link{display:flex;align-items:center;gap:5px;width:max-content}
+.github-link svg:last-child{color:var(--blue)}
 
 .content{
   margin-left:194px;
@@ -140,6 +142,7 @@ button{color:inherit}
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  gap:6px;
   min-width:120px;
   padding:10px 16px;
   border-radius:7px;
@@ -199,9 +202,9 @@ button{color:inherit}
   border:1px solid #d6e4f2;
   color:var(--blue);
   background:#fff;
-  font-weight:900;
   box-shadow:0 4px 12px rgba(41,77,119,.07);
 }
+.focus-icon svg{filter:drop-shadow(0 2px 5px rgba(10,105,238,.10))}
 .focus-card strong{font-size:11px}
 .focus-card p{margin:3px 0 0;color:var(--muted);font-size:9px;line-height:1.4}
 
@@ -251,8 +254,6 @@ button{color:inherit}
   place-items:center;
   border-radius:9px;
   color:#fff;
-  font-size:10px;
-  font-weight:950;
 }
 .experience-aia .experience-logo{background:#10151b}
 .experience-aiwave .experience-logo{background:linear-gradient(145deg,#1686ff,#0966dd)}
@@ -295,6 +296,9 @@ button{color:inherit}
   margin-bottom:1px;
   padding:0;
   border:0;
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
   color:var(--blue);
   background:transparent;
   cursor:pointer;
@@ -363,6 +367,9 @@ button{color:inherit}
   margin-top:4px;
   padding:0;
   border:0;
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
   background:transparent;
   color:var(--blue);
   font-size:8px;
@@ -442,7 +449,7 @@ button{color:inherit}
 .work-copy p{margin:5px 0;color:var(--muted);font-size:10px;line-height:1.5}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
 .tags span{padding:4px 7px;border-radius:6px;background:#f0f5fb;color:#496682;font-size:7px}
-.work-copy>a{margin-top:auto;color:var(--blue);font-size:9px;font-weight:800;text-decoration:none}
+.work-copy>a{margin-top:auto;display:inline-flex;align-items:center;gap:4px;width:max-content;color:var(--blue);font-size:9px;font-weight:800;text-decoration:none}
 .secondary-work{
   margin:0 16px 15px;
   padding:8px 10px;
@@ -459,7 +466,7 @@ button{color:inherit}
 .secondary-work span{display:grid;gap:2px}
 .secondary-work b{font-size:9px}
 .secondary-work small{color:#788da4;font-size:8px}
-.secondary-work strong{color:var(--blue);font-size:8px}
+.secondary-work strong{display:inline-flex;align-items:center;gap:3px;color:var(--blue);font-size:8px}
 
 .notes-grid{
   display:grid;
@@ -491,6 +498,10 @@ button{color:inherit}
   margin-top:auto;
   padding:0;
   border:0;
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  width:max-content;
   color:var(--blue);
   background:transparent;
   text-align:left;
@@ -506,19 +517,43 @@ button{color:inherit}
   gap:6px;
   padding:0 14px 14px;
 }
-.skills-grid span{
-  min-height:31px;
+.skills-grid .skill-chip{
+  min-height:34px;
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:7px;
   padding:7px 8px;
   border:1px solid #dce7f2;
   border-radius:8px;
   color:#36516c;
   background:#fff;
   font-size:8px;
+  transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease;
 }
-.skills-grid b{min-width:22px;color:var(--blue);font-size:7px}
+.skills-grid .skill-chip:hover{transform:translateY(-1px);border-color:#c6daf0;box-shadow:0 6px 14px rgba(44,78,116,.07)}
+.skill-chip i{
+  width:25px;
+  height:25px;
+  flex:0 0 25px;
+  display:grid;
+  place-items:center;
+  border-radius:7px;
+  color:var(--blue);
+  background:#f1f7ff;
+  font-style:normal;
+}
+.skill-python i{color:#3776ab;background:#edf5fb}
+.skill-javascript i{color:#b99200;background:#fff9d9}
+.skill-linux i{color:#111827;background:#f1f3f5}
+.skill-web i{color:#0b77d5;background:#edf7ff}
+.skill-security i{color:#0969da;background:#edf5ff}
+.skill-git i{color:#e25532;background:#fff1ed}
+.skill-react i{color:#078db5;background:#ecfbff}
+.skill-cli i{color:#455a70;background:#f0f4f8}
+.skill-automation i{color:#7c4dff;background:#f4f0ff}
+.skill-network i{color:#1477c9;background:#eff8ff}
+.skill-ctf i{color:#193b63;background:#eef3f8}
+.skill-llm i{color:#5b5bd6;background:#f1f1ff}
 
 .contact-panel{
   position:relative;
@@ -536,14 +571,14 @@ button{color:inherit}
 }
 .contact-copy{display:flex;align-items:flex-start;gap:12px;z-index:2}
 .contact-icon{
-  width:28px;
-  height:28px;
+  width:31px;
+  height:31px;
   display:grid;
   place-items:center;
-  border:2px solid var(--blue);
+  border:1px solid #bcd7f5;
   border-radius:50%;
   color:var(--blue);
-  font-weight:900;
+  background:#f5faff;
 }
 .contact-copy h2{margin:0;font-size:16px}
 .contact-copy p{margin:4px 0 0;color:var(--muted);font-size:9px;line-height:1.45}
@@ -551,6 +586,10 @@ button{color:inherit}
 .contact-actions a{
   min-width:100px;
   padding:9px 12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
   text-align:center;
   border:1px solid #cfe0f1;
   border-radius:8px;

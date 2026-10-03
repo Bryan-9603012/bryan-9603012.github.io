@@ -46,6 +46,7 @@ function App() {
           <a className="active" href="#home"><b>⌂</b><span>Home</span></a>
           <a href="#about"><b>♙</b><span>About</span></a>
           <a href="#work"><b>◇</b><span>Work</span></a>
+          <a href="#experience"><b>♜</b><span>Experience</span></a>
           <a href="#notes"><b>▤</b><span>Notes</span></a>
           <a href="#skills"><b>⌘</b><span>Skills</span></a>
           <a href="#contact"><b>✉</b><span>Contact</span></a>
@@ -165,6 +166,65 @@ function App() {
             </a>
           </section>
         </div>
+
+        <section className="panel experience-panel" id="experience">
+          <div className="panel-heading">
+            <h2>Experience &amp; Highlights</h2>
+            <span>Selected public activities</span>
+          </div>
+
+          <div className="experience-list">
+            <article className="experience-item">
+              <div className="experience-brand experience-aia">
+                <span className="experience-logo">AI</span>
+                <div>
+                  <strong>Taiwan AI Academy × Claude Code</strong>
+                  <small>Demo Showcase · Proposal Selected</small>
+                </div>
+              </div>
+              <time>2026.05.18</time>
+              <div className="experience-copy">
+                <h3>Can AI Keep a Secret?</h3>
+                <p>
+                  A public LLM security showcase project focused on sensitive-information
+                  protection, prompt attacks, leak-level scoring, and reproducible security evaluation.
+                </p>
+                <div className="tags">
+                  <span>LLM Security</span>
+                  <span>Prompt Attack</span>
+                  <span>Security Evaluation</span>
+                </div>
+              </div>
+            </article>
+
+            <article className="experience-item">
+              <div className="experience-brand experience-aiwave">
+                <span className="experience-logo">AI</span>
+                <div>
+                  <strong>AIWave · Taiwan Generative AI Applications Hackathon</strong>
+                  <small>AWS Taiwan × DIGITIMES</small>
+                </div>
+              </div>
+              <time>2026.08.01–08.02</time>
+              <div className="experience-copy">
+                <h3>Generative AI Hackathon</h3>
+                <p>
+                  Participated in a two-day generative AI applications hackathon and received
+                  a Certificate of Achievement recognizing full participation and project work.
+                </p>
+                <div className="experience-actions">
+                  <div className="tags">
+                    <span>Generative AI</span>
+                    <span>Hackathon</span>
+                    <span>AWS</span>
+                    <span>Team Project</span>
+                  </div>
+                  <button onClick={() => setShowCertificate(true)}>View Certificate →</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
 
         <div className="dashboard-grid secondary-grid">
           <section className="panel notes-panel" id="notes">

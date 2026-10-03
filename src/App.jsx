@@ -140,10 +140,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="about-visual" aria-label="Taipei skyline and development workspace">
-                <span className="laptop-screen" />
-                <span className="desk-cup" />
-              </div>
+              <div className="about-visual" aria-label="Original engineering workspace illustration" />
             </div>
           </section>
 
@@ -155,7 +152,7 @@ function App() {
 
             <article className="featured-work">
               <a className="work-preview" href="https://github.com/Bryan-9603012/picoctf-toolkit" target="_blank" rel="noreferrer">
-                <img src="https://opengraph.githubassets.com/1/Bryan-9603012/picoctf-toolkit" alt="picoctf-toolkit repository preview" />
+                <img src="/assets/toolkit-preview.svg" alt="Original visual representing the picoCTF Modular Toolkit" />
               </a>
               <div className="work-copy">
                 <div className="work-title-row"><h3>picoCTF Modular Toolkit</h3><em>Public</em></div>
@@ -168,6 +165,7 @@ function App() {
             </article>
 
             <a className="secondary-work" href="https://github.com/Bryan-9603012/picoCTF-report" target="_blank" rel="noreferrer">
+              <img src="/assets/report-preview.svg" alt="Original visual representing the picoCTF report collection" />
               <span><b>picoCTF-report</b><small>Writeups, learning notes, and tool research.</small></span>
               <strong>Open <Icon name="arrow" size={10} /></strong>
             </a>

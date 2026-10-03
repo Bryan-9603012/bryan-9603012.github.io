@@ -119,7 +119,7 @@ button{color:inherit}
 
 .hero{
   position:relative;
-  height:320px;
+  height:332px;
   overflow:hidden;
   border-radius:0 0 15px 15px;
   background:#d8ecff;
@@ -128,10 +128,12 @@ button{color:inherit}
   position:absolute;
   inset:0;
   background-image:
-    linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.88) 23%,rgba(255,255,255,.46) 41%,rgba(255,255,255,.10) 60%,rgba(255,255,255,0) 78%),
+    linear-gradient(90deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.90) 20%,rgba(255,255,255,.52) 38%,rgba(255,255,255,.12) 58%,rgba(255,255,255,0) 76%),
+    linear-gradient(180deg,rgba(255,255,255,.03),rgba(8,38,66,.05)),
     url("/assets/hero-security-workspace.svg");
   background-size:cover;
-  background-position:center 48%;
+  background-position:center 46%;
+  filter:saturate(1.04) contrast(1.02);
 }
 .hero:after{
   content:"";
@@ -139,8 +141,8 @@ button{color:inherit}
   left:0;
   right:0;
   bottom:0;
-  height:36px;
-  background:linear-gradient(180deg,transparent,rgba(248,251,255,.42));
+  height:44px;
+  background:linear-gradient(180deg,transparent,rgba(248,251,255,.72));
   pointer-events:none;
 }
 .hero-copy{
@@ -237,38 +239,38 @@ button{color:inherit}
 
 .about-panel{
   margin-top:8px;
-  padding:14px 16px;
+  padding:12px 14px;
   display:grid;
   grid-template-columns:1.18fr .95fr;
-  gap:18px;
+  gap:16px;
   scroll-margin-top:70px;
 }
 .about-copy{padding:0 4px}
 .about-copy p{
-  margin:0 0 11px;
+  margin:0 0 9px;
   color:#35516e;
-  font-size:11px;
-  line-height:1.58;
+  font-size:10.5px;
+  line-height:1.52;
 }
 .about-focus{
   display:grid;
-  gap:7px;
+  gap:6px;
 }
 .about-focus-card{
   position:relative;
-  min-height:64px;
+  min-height:58px;
   display:grid;
   grid-template-columns:45px 1fr auto;
   gap:10px;
   align-items:center;
-  padding:10px 12px;
+  padding:8px 11px;
   border:1px solid #dce8f4;
   border-radius:10px;
   background:linear-gradient(180deg,#fff,#f8fbff);
 }
 .about-focus-icon{
-  width:39px;
-  height:39px;
+  width:36px;
+  height:36px;
   display:grid;
   place-items:center;
   border-radius:50%;
@@ -370,7 +372,7 @@ button{color:inherit}
   flex-direction:column;
 }
 .project-image{
-  height:156px;
+  height:142px;
   display:block;
   overflow:hidden;
   border:1px solid #d8e5f0;
@@ -436,20 +438,24 @@ button{color:inherit}
 
 .experience-stack{
   display:grid;
-  gap:8px;
+  gap:10px;
   padding:0 12px 12px;
 }
 .experience-card{
   position:relative;
   display:grid;
-  grid-template-columns:42px 1fr;
-  gap:10px;
-  padding:10px 0;
+  grid-template-columns:46px 1fr;
+  gap:11px;
+  padding:12px 12px;
+  border:1px solid #e1eaf3;
+  border-radius:10px;
+  background:linear-gradient(180deg,#ffffff,#fbfdff);
+  box-shadow:0 5px 14px rgba(48,80,116,.035);
 }
-.experience-card+.experience-card{border-top:1px solid #e3ebf3}
+.experience-card+.experience-card{border-top:1px solid #e1eaf3}
 .experience-logo{
-  width:38px;
-  height:38px;
+  width:42px;
+  height:42px;
   display:grid;
   place-items:center;
   border-radius:8px;
@@ -468,8 +474,8 @@ button{color:inherit}
 .experience-meta small{display:block}
 .experience-meta strong{
   color:#173957;
-  font-size:9px;
-  line-height:1.3;
+  font-size:9.5px;
+  line-height:1.28;
 }
 .experience-meta small{
   margin-top:2px;
@@ -478,17 +484,18 @@ button{color:inherit}
 }
 .experience-meta time{
   flex:0 0 auto;
-  padding:3px 7px;
-  border:1px solid #dce7f2;
+  padding:4px 8px;
+  border:1px solid #cfe0f1;
   border-radius:999px;
-  color:#6d8399;
-  background:#f8fbff;
+  color:#5f7892;
+  background:#f2f7fd;
   font-size:7px;
+  font-weight:800;
 }
 .experience-card h3{
   margin:8px 0 4px;
   color:#112f4e;
-  font-size:11px;
+  font-size:12px;
 }
 .experience-card p{
   margin:0;
@@ -607,14 +614,18 @@ button{color:inherit}
 
 .contact-panel{
   position:relative;
-  min-height:76px;
+  min-height:84px;
   margin-top:10px;
-  padding:13px 18px;
+  padding:14px 18px;
   display:grid;
   grid-template-columns:1.3fr auto 250px;
   gap:20px;
   align-items:center;
   overflow:hidden;
+  border:1px solid #d7e5f2;
+  border-radius:12px;
+  background:linear-gradient(180deg,#ffffff,#fbfdff);
+  box-shadow:0 10px 28px rgba(47,79,116,.06);
 }
 .contact-copy{
   z-index:2;
@@ -623,9 +634,9 @@ button{color:inherit}
   gap:10px;
 }
 .contact-icon{
-  width:30px;
-  height:30px;
-  flex:0 0 30px;
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
   display:grid;
   place-items:center;
   border:1px solid #c4dcf5;
@@ -635,12 +646,13 @@ button{color:inherit}
 }
 .contact-copy h2{
   margin:0;
-  font-size:14px;
+  color:#123252;
+  font-size:15px;
 }
 .contact-copy p{
-  margin:3px 0 0;
-  color:#71869d;
-  font-size:8px;
+  margin:4px 0 0;
+  color:#6b829a;
+  font-size:8.5px;
 }
 .contact-actions{
   z-index:2;
@@ -648,16 +660,17 @@ button{color:inherit}
   gap:8px;
 }
 .contact-actions a{
-  min-width:105px;
-  padding:8px 11px;
+  min-width:110px;
+  padding:9px 12px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap:6px;
-  border:1px solid #cfe0f1;
+  border:1px solid #bdd7ee;
   border-radius:8px;
   color:#173b60;
-  background:#fbfdff;
+  background:#ffffff;
+  box-shadow:0 4px 10px rgba(51,84,120,.04);
   text-decoration:none;
   font-size:8px;
   font-weight:800;
@@ -666,10 +679,10 @@ button{color:inherit}
   position:absolute;
   right:16px;
   bottom:5px;
-  color:#84b7ff;
+  color:#9bc5ff;
   font:21px/1 monospace;
   letter-spacing:-4px;
-  opacity:.62;
+  opacity:.34;
   white-space:nowrap;
 }
 

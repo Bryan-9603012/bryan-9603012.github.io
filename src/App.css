@@ -213,6 +213,96 @@ button{color:inherit}
 .primary-grid{grid-template-columns:1.35fr .85fr}
 .secondary-grid{grid-template-columns:1.45fr .95fr}
 
+.experience-panel{
+  margin-bottom:10px;
+}
+.experience-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:0 14px 14px;
+}
+.experience-item{
+  position:relative;
+  min-height:170px;
+  padding:14px;
+  border:1px solid #dce7f2;
+  border-radius:10px;
+  background:linear-gradient(180deg,#fff,#fbfdff);
+}
+.experience-item time{
+  position:absolute;
+  top:14px;
+  right:14px;
+  color:#7a8fa6;
+  font-size:8px;
+}
+.experience-brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding-right:90px;
+}
+.experience-logo{
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+  display:grid;
+  place-items:center;
+  border-radius:9px;
+  color:#fff;
+  font-size:10px;
+  font-weight:950;
+}
+.experience-aia .experience-logo{background:#10151b}
+.experience-aiwave .experience-logo{background:linear-gradient(145deg,#1686ff,#0966dd)}
+.experience-brand strong,
+.experience-brand small{
+  display:block;
+}
+.experience-brand strong{
+  color:#173957;
+  font-size:10px;
+  line-height:1.3;
+}
+.experience-brand small{
+  margin-top:2px;
+  color:#7a8da3;
+  font-size:8px;
+}
+.experience-copy{
+  margin-top:12px;
+}
+.experience-copy h3{
+  margin:0 0 5px;
+  color:#0f2948;
+  font-size:13px;
+}
+.experience-copy p{
+  margin:0;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.5;
+}
+.experience-actions{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:10px;
+}
+.experience-actions button{
+  flex:0 0 auto;
+  margin-bottom:1px;
+  padding:0;
+  border:0;
+  color:var(--blue);
+  background:transparent;
+  cursor:pointer;
+  font-size:8px;
+  font-weight:800;
+}
+
+
 .panel{
   min-width:0;
   border:1px solid var(--line);
@@ -492,6 +582,7 @@ footer{
 
 @media(max-width:1180px){
   .primary-grid,.secondary-grid{grid-template-columns:1fr}
+  .experience-list{grid-template-columns:1fr}
   .skills-grid{grid-template-columns:repeat(4,1fr)}
   .hero-side-note{display:none}
   .hero-motto{right:24px}

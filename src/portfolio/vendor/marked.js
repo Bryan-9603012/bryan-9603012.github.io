@@ -56,11 +56,8 @@ This software is provided by the copyright holders and contributors “as is” 
  * The code in this file is generated from files in ./src/
  */
 
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.marked = {}));
-})(this, (function (exports) { 'use strict';
+const markedExports = {};
+(function (exports) { 'use strict';
 
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
@@ -3106,5 +3103,5 @@ This software is provided by the copyright holders and contributors “as is” 
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
-
+})(markedExports);
+export default markedExports;

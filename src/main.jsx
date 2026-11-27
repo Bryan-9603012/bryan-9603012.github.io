@@ -1,10 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import "./index.css";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// Legacy article adapter initializes mounted DOM once; migrate it before enabling StrictMode's development remount.
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);

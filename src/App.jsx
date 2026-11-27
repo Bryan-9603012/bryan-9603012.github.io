@@ -1,60 +1,24 @@
-import { useMemo, useState } from "react";
-import "./App.css";
+import React, { useLayoutEffect, useRef, useState } from "react";
+import { Header, Footer, CertificateDialog, Page } from "./portfolio/Layout.jsx";
+import { resolveRoute } from "./portfolio/routes.js";
+import { initPortfolio } from "./portfolio/runtime.js";
+import pageData from "./portfolio/pages.json";
+import "./portfolio/portfolio.css";
 
-import Header from "./components/layout/Header";
-import HeroSection from "./components/sections/HeroSection";
-import ServicesSection from "./components/sections/ServicesSection";
-import LearningStageSection from "./components/sections/LearningStageSection";
-import AchievementsSection from "./components/sections/AchievementsSection";
-import ContactSection from "./components/sections/ContactSection";
-
-import PicoCTFModal from "./components/modals/PicoCTFModal";
-import LinuxNotesModal from "./components/modals/LinuxNotesModal";
-import DigitalLogicModal from "./components/modals/DigitalLogicModal";
-
-import { achievementsData } from "./components/sections/achievements.data";
-
-function App() {
-  const [showPicoPage, setShowPicoPage] = useState(false);
-  const [showLinuxNotes, setShowLinuxNotes] = useState(false);
-  const [showDigitalLogic, setShowDigitalLogic] = useState(false);
-
-  const achievements = useMemo(() => achievementsData, []);
-
-  return (
-    <>
-      {/* 背景 */}
-      <div className="glow-bg" />
-      <div className="hero-gradient" aria-hidden="true" />
-
-      <Header />
-
-      <main className="page-main">
-        <HeroSection
-          onOpenLinux={() => setShowLinuxNotes(true)}
-          onOpenPico={() => setShowPicoPage(true)}
-          onOpenDigitalLogic={() => setShowDigitalLogic(true)}
-        />
-
-        <ServicesSection />
-
-        <LearningStageSection
-          onOpenLinux={() => setShowLinuxNotes(true)}
-          onOpenPico={() => setShowPicoPage(true)}
-          onOpenDigitalLogic={() => setShowDigitalLogic(true)}
-        />
-
-        <AchievementsSection achievements={achievements} />
-
-        <ContactSection />
-      </main>
-
-      {/* ===== Modals ===== */}
-      <PicoCTFModal isOpen={showPicoPage} onClose={() => setShowPicoPage(false)} />
-      <LinuxNotesModal isOpen={showLinuxNotes} onClose={() => setShowLinuxNotes(false)} />
-      <DigitalLogicModal isOpen={showDigitalLogic} onClose={() => setShowDigitalLogic(false)} />
-    </>
-  );
+const pageContent = Object.entries(pageData).map(([id,markup])=>({id,html:{__html:markup}}));
+export default function App(){
+  const [hash,setHash]=useState(()=>window.location.hash);
+  const runtime=useRef(null);
+  const route=resolveRoute(hash);
+  useLayoutEffect(()=>{
+    runtime.current=initPortfolio();
+    const onHash=()=>setHash(window.location.hash);
+    window.addEventListener("hashchange",onHash);
+    return ()=>{window.removeEventListener("hashchange",onHash);runtime.current?.dispose();runtime.current=null;};
+  },[]);
+  useLayoutEffect(()=>{
+    window.scrollTo(0,0);
+    if(route.entry) runtime.current?.openReport(route.entry); else runtime.current?.cancelReport();
+  },[hash]);
+  return <><Header key={route.key} route={route}/><main><span hidden id="crumb">{route.title}</span><div className="content">{pageContent.map(p=><Page key={p.id} id={p.id} active={p.id===route.view} html={p.html}/>)}<Footer/></div></main><CertificateDialog/></>;
 }
-
-export default App;

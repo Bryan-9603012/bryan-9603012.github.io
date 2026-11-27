@@ -1,10 +1,10 @@
-import "./vendor/marked.js";
+import marked from "./vendor/marked.js";
 import archive from "./archive.json";
 import { pageTitles as pages } from "./routes.js";
 
 // Compatibility adapter for the approved article and terminal UI. React owns navigation.
 export function initPortfolio() {
-const marked = globalThis.marked;
+
 
 
 

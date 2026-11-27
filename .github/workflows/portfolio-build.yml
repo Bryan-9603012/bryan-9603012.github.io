@@ -23,3 +23,40 @@ jobs:
           name: portfolio-dist
           path: dist
           if-no-files-found: error
+
+  publish:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: portfolio-gh-pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - uses: actions/download-artifact@v4
+        with:
+          name: portfolio-dist
+          path: _portfolio_dist
+      - name: Publish verified build to gh-pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f _portfolio_dist/index.html
+          test -d _portfolio_dist/assets
+          rm -rf assets
+          cp -a _portfolio_dist/. .
+          rm -rf _portfolio_dist
+          touch .nojekyll
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to publish"
+            exit 0
+          fi
+          git commit -m "deploy: portfolio ${GITHUB_SHA}"
+          git push origin HEAD:gh-pages

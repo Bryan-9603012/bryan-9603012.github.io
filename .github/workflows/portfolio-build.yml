@@ -17,7 +17,19 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - name: Fetch pinned NiYu webfont
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public/fonts
+          curl --fail --location --retry 3 --output public/fonts/NiYu-Regular.woff2 https://raw.githubusercontent.com/01460421/01460421.github.io/71f5b613529ee51d8a2772e52eadc0a2bb2cf936/fonts/NiYu-Regular.woff2
+          test "$(git hash-object public/fonts/NiYu-Regular.woff2)" = "ba6fdbba81ccb710cf67424d5eec2610cfe99a63"
+          test "$(git hash-object public/licenses/NiYu-OFL.txt)" = "c4fd9a535e873d339a0f1241258a1aa04c3fbaa6"
       - run: npm run build
+      - name: Verify deployed font asset
+        run: |
+          test "$(git hash-object dist/fonts/NiYu-Regular.woff2)" = "ba6fdbba81ccb710cf67424d5eec2610cfe99a63"
+          test -f dist/licenses/NiYu-OFL.txt
       - uses: actions/upload-artifact@v4
         with:
           name: portfolio-dist
